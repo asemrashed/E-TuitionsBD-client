@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>E-TuitionBD - Tutor Matching Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        @layer base {
+            html {
+                font-family: 'Ubuntu', sans-serif;
+            }
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+        .font-logo {
+            font-family: 'Righteous', cursive;}
+    </style>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2c7ef4",
+                        "primary-content": "#ffffff",
+                        "secondary": "#072f85",
+                        "secondary-content": "#ffffff","base-100": "#0f172a","base-200": "#1e293b","base-300": "#334155","base-content": "#e2e8f0",},
+                    fontFamily: {
+                        "sans": ["Ubuntu", "sans-serif"],
+                        "logo": ["Righteous", "cursive"], 
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-base-100 text-base-content font-sans">
+<div class="flex h-auto min-h-screen w-full flex-col">
+<header class="w-full bg-base-200 shadow-lg shadow-black/20">
+<div class="container mx-auto px-6">
+<div class="flex items-center justify-between py-3">
+<div class="flex items-center gap-3">
+<svg class="h-10 w-10 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+<path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+<path d="M12 14l9-5-9-5-9 5 9 5zm0 0v6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<h1 class="font-logo text-2xl font-bold text-primary-content">E-TuitionBD</h1>
+</div>
+<div class="flex-1 px-8">
+<div class="relative w-full max-w-lg mx-auto">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="form-input w-full rounded-full border-0 bg-base-300 pl-10 pr-4 py-2 text-primary-content placeholder:text-gray-400 focus:ring-2 focus:ring-primary" placeholder="Search for tutors or subjects" type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="rounded-lg px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/10">Sign In</button>
+<button class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-content shadow-sm transition-colors hover:bg-primary/90">Sign Up</button>
+</div>
+</div>
+<nav class="flex h-12 items-center justify-center border-t border-white/20">
+<ul class="flex h-full items-center gap-8 text-base-content">
+<li><a class="flex h-full items-center border-b-2 border-primary px-2 font-semibold text-primary" href="#">Job Board</a></li>
+<li><a class="flex h-full items-center border-b-2 border-transparent px-2 font-medium transition-colors hover:border-primary hover:text-primary" href="#">Categories</a></li>
+<li><a class="flex h-full items-center border-b-2 border-transparent px-2 font-medium transition-colors hover:border-primary hover:text-primary" href="#">Tutor Hub</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main class="flex-grow">
+<div class="container mx-auto px-6">
+<section class="py-16">
+<div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16">
+<div class="text-center lg:text-left">
+<h2 class="text-5xl font-bold leading-tight text-primary-content">Country's #1 Tutor Matching &amp; Learning Platform.</h2>
+<p class="mx-auto mt-4 max-w-2xl text-lg text-base-content/80 lg:mx-0">Find the best tutors for your needs and start your learning journey with confidence. We connect students with professional tutors for personalized learning experiences.</p>
+</div>
+<div class="flex justify-center">
+<img alt="Students and tutor collaborating in a bright, modern space." class="w-full max-w-lg rounded-xl shadow-2xl shadow-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvC2wSM4cIwG5h10ZTp33CPJyIu3l5fZAhql7O9pHI8TDFR1BX8ktZAQNl7sQeNGmjduK4xXwZKVYV3Pot9Iek46kvO5Of5bEtlRzkajhp7KbgLpasVI6c1u86bn2RbOzaxQJVjfq82olZ2EL-Hi8HLOCJ1_FweSfH_nz0qwn1RrydSb6rpgyIlDYnouIB_9TNaByopSyIzn0gJCE_W1KxjqD8xnOCS_QdsH6qjkC8kJTj-ZiGWVl4H6z4Tplv-xO2T6XKHVn3tw"/>
+</div>
+</div>
+</section>
+<section class="py-16 pt-0">
+<div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+<div class="flex flex-col gap-1 rounded-lg bg-base-300 p-6 text-center">
+<p class="text-4xl font-bold text-primary-content">10,000+</p>
+<p class="text-sm font-medium text-base-content/90">Registered Tutors</p>
+</div>
+<div class="flex flex-col gap-1 rounded-lg bg-base-300 p-6 text-center">
+<p class="text-4xl font-bold text-primary-content">50,000+</p>
+<p class="text-sm font-medium text-base-content/90">Total Applications</p>
+</div>
+<div class="flex flex-col gap-1 rounded-lg bg-base-300 p-6 text-center">
+<p class="text-4xl font-bold text-primary-content">2,500+</p>
+<p class="text-sm font-medium text-base-content/90">Live Tuition Jobs</p>
+</div>
+<div class="flex flex-col gap-1 rounded-lg bg-base-300 p-6 text-center">
+<p class="text-4xl font-bold text-primary-content">62,500+</p>
+<p class="text-sm font-medium text-base-content/90">Total Stakeholders</p>
+</div>
+</div>
+</section>
+<section class="pb-16">
+<h3 class="mb-8 text-3xl font-bold text-center text-primary-content">Latest Tuition Posts</h3>
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+<div class="flex flex-col rounded-lg bg-base-200 p-6 shadow-lg">
+<div class="mb-4 flex items-center justify-between">
+<span class="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">Class 1-5</span>
+<div class="text-sm text-base-content/70">
+<span>ID: #12345</span>
+<span class="mx-2">·</span>
+<span>1h ago</span>
+</div>
+</div>
+<div class="mb-4 grid grid-cols-2 gap-x-4 gap-y-3">
+<div class="col-span-2 flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">location_on</span>
+<div>
+<p class="font-semibold text-primary-content">Dhaka</p>
+<p class="text-sm text-base-content/70">Dhaka, Bangladesh</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">book</span>
+<div>
+<p class="font-semibold text-primary-content">Subjects</p>
+<p class="text-sm text-base-content/70">All Subjects</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">paid</span>
+<div>
+<p class="font-semibold text-primary-content">Salary</p>
+<p class="text-sm text-base-content/70">BDT 5,000</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">person</span>
+<div>
+<p class="font-semibold text-primary-content">Tutor Gender</p>
+<p class="text-sm text-base-content/70">Any Gender</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">schedule</span>
+<div>
+<p class="font-semibold text-primary-content">Tutoring Time</p>
+<p class="text-sm text-base-content/70">Flexible Time</p>
+</div>
+</div>
+</div>
+<button class="mt-auto w-full rounded-lg bg-primary py-2.5 text-center font-semibold text-primary-content transition-colors hover:bg-secondary">View Details</button>
+</div>
+<div class="flex flex-col rounded-lg bg-base-200 p-6 shadow-lg">
+<div class="mb-4 flex items-center justify-between">
+<span class="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">Class 11-12</span>
+<div class="text-sm text-base-content/70">
+<span>ID: #12346</span>
+<span class="mx-2">·</span>
+<span>3h ago</span>
+</div>
+</div>
+<div class="mb-4 grid grid-cols-2 gap-x-4 gap-y-3">
+<div class="col-span-2 flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">location_on</span>
+<div>
+<p class="font-semibold text-primary-content">Chittagong</p>
+<p class="text-sm text-base-content/70">Chittagong, Bangladesh</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">book</span>
+<div>
+<p class="font-semibold text-primary-content">Subjects</p>
+<p class="text-sm text-base-content/70">Physics, Chemistry, Math</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">paid</span>
+<div>
+<p class="font-semibold text-primary-content">Salary</p>
+<p class="text-sm text-base-content/70">BDT 10,000</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">person</span>
+<div>
+<p class="font-semibold text-primary-content">Tutor Gender</p>
+<p class="text-sm text-base-content/70">Male</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">schedule</span>
+<div>
+<p class="font-semibold text-primary-content">Tutoring Time</p>
+<p class="text-sm text-base-content/70">3 days/week</p>
+</div>
+</div>
+</div>
+<button class="mt-auto w-full rounded-lg bg-primary py-2.5 text-center font-semibold text-primary-content transition-colors hover:bg-secondary">View Details</button>
+</div>
+<div class="flex flex-col rounded-lg bg-base-200 p-6 shadow-lg">
+<div class="mb-4 flex items-center justify-between">
+<span class="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">Class 6-8</span>
+<div class="text-sm text-base-content/70">
+<span>ID: #12347</span>
+<span class="mx-2">·</span>
+<span>5h ago</span>
+</div>
+</div>
+<div class="mb-4 grid grid-cols-2 gap-x-4 gap-y-3">
+<div class="col-span-2 flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">location_on</span>
+<div>
+<p class="font-semibold text-primary-content">Sylhet</p>
+<p class="text-sm text-base-content/70">Sylhet, Bangladesh</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">book</span>
+<div>
+<p class="font-semibold text-primary-content">Subjects</p>
+<p class="text-sm text-base-content/70">English, Mathematics</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">paid</span>
+<div>
+<p class="font-semibold text-primary-content">Salary</p>
+<p class="text-sm text-base-content/70">BDT 7,000</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">person</span>
+<div>
+<p class="font-semibold text-primary-content">Tutor Gender</p>
+<p class="text-sm text-base-content/70">Female</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined mt-1 text-lg text-primary">schedule</span>
+<div>
+<p class="font-semibold text-primary-content">Tutoring Time</p>
+<p class="text-sm text-base-content/70">Evening</p>
+</div>
+</div>
+</div>
+<button class="mt-auto w-full rounded-lg bg-primary py-2.5 text-center font-semibold text-primary-content transition-colors hover:bg-secondary">View Details</button>
+</div>
+</div>
+</section>
+<section class="pb-16">
+<h3 class="mb-8 text-3xl font-bold text-center text-primary-content">New Tutors</h3>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+<div class="flex flex-col items-center rounded-lg bg-base-200 p-6 text-center shadow-lg">
+<img alt="Profile picture of Jane Doe" class="h-24 w-24 rounded-full object-cover ring-4 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7nofJ-BoPl0aojQ9RyFjoW6zrC-ORs6Zaz7Leks7c90ihHzDnocBAIRKVhGoN_v3n1-7DqKQe7OUW-57UEBn6fRnlI0pLz2YScYnxomEGnj-sF-3tzRNkzQXybTduPbGIQi6An4DO9h_MppKuzIy2oRhyQQt_1RtesmwcorFa38YfxOZGEuFRdAp4LyLa8rXEDdpuMEcM9aBaKEQM2kzy-r1mXurxAYJMXYcu2CYQw3dkDy9g23qpbJ9Sz-0u9_jdWYmesHiUow"/>
+<p class="mt-4 text-lg font-bold text-primary-content">Jane Doe</p>
+<p class="text-sm text-base-content/70">Dhaka University</p>
+<p class="mt-2 text-sm text-base-content/70">Dhaka, Bangladesh</p>
+<button class="mt-auto w-full rounded-lg bg-primary py-2 text-center font-semibold text-primary-content transition-colors hover:bg-secondary mt-4">See</button>
+</div>
+<div class="flex flex-col items-center rounded-lg bg-base-200 p-6 text-center shadow-lg">
+<img alt="Profile picture of John Smith" class="h-24 w-24 rounded-full object-cover ring-4 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjtwwdlqQTVsaYEbALG85fHmKplSbdchgc3aJTOMcpWVFBoUpzDRVuvW1b8FzUkCCuuPnr0eGNncpTM9SFyUBNjB7n06D2Dz4gqZJ_0Fjq_XKRIYe71GD0im-vvZuo_txzVWPdpgpVVS_Wrd3fvAuRwdUY4Lx42CC8BubmUWZK0Q-2ho1BsN0h5oTQujX65kVtpQU33Y9Xze5_kjTE6wOcgnFevrEL6N-uBk-y61iVJ1FPhooIz9M7WikYl1bgKS-vGTI3lfgusQ"/>
+<p class="mt-4 text-lg font-bold text-primary-content">John Smith</p>
+<p class="text-sm text-base-content/70">BUET</p>
+<p class="mt-2 text-sm text-base-content/70">Chittagong, Bangladesh</p>
+<button class="mt-auto w-full rounded-lg bg-primary py-2 text-center font-semibold text-primary-content transition-colors hover:bg-secondary mt-4">See</button>
+</div>
+<div class="flex flex-col items-center rounded-lg bg-base-200 p-6 text-center shadow-lg">
+<img alt="Profile picture of Emily Johnson" class="h-24 w-24 rounded-full object-cover ring-4 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-qoCtlqAoBO0AtS7Fiuw2HtlweGBH14OWYGQBkgnUdo-virJPbXHfGCnan2_uPuZMM63eazPv-wP1yJbh0NgmqyBZ20DxIi3U3NKZYv3MIqXbmpFXaE1uYW9Jk4e-Qlutaza_qLwcy7FQKTn89eheMjL5qaRMYQPqQ71sOlwR2j14T3C1zbXWCfeFhNIGWyrP4D-nk8eMM0QitidHlg8hUyClS4LXdOhCXFtNsvURD7XBEX2hKSTGiJ750R6NCFH6SfW32hWBdQ"/>
+<p class="mt-4 text-lg font-bold text-primary-content">Emily Johnson</p>
+<p class="text-sm text-base-content/70">Dhaka Medical College</p>
+<p class="mt-2 text-sm text-base-content/70">Sylhet, Bangladesh</p>
+<button class="mt-auto w-full rounded-lg bg-primary py-2 text-center font-semibold text-primary-content transition-colors hover:bg-secondary mt-4">See</button>
+</div>
+<div class="flex flex-col items-center rounded-lg bg-base-200 p-6 text-center shadow-lg">
+<img alt="Profile picture of Michael Brown" class="h-24 w-24 rounded-full object-cover ring-4 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjIHitt16kiQ3jzyI3ZiwRPcIRn5t5n64JLXmcfRaTNuVLMFQXFcE6WFThNqo5QKjf-TprMdk7lAXPOT0C-F7xtB03jdqC7GTxkRGgAGdvuP4Sp0JFgQpH9TXpq9-m9IwPkKxOrzAGIzbhQSWCNA6QOb0KMMh1ttNlT4-n1m7hTcElZzeiy8oCr9rOsoP2FSIoj-yHvQcTejPBlV1yZFsqKznzk2ZJd8oZMGbcmQr5dlNLtVjiASPPLsoLETPfDiSRsLE6hgjLpA"/>
+<p class="mt-4 text-lg font-bold text-primary-content">Michael Brown</p>
+<p class="text-sm text-base-content/70">North South University</p>
+<p class="mt-2 text-sm text-base-content/70">Dhaka, Bangladesh</p>
+<button class="mt-auto w-full rounded-lg bg-primary py-2 text-center font-semibold text-primary-content transition-colors hover:bg-secondary mt-4">See</button>
+</div>
+<div class="flex flex-col items-center rounded-lg bg-base-200 p-6 text-center shadow-lg">
+<img alt="Profile picture of Jane Doe" class="h-24 w-24 rounded-full object-cover ring-4 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7nofJ-BoPl0aojQ9RyFjoW6zrC-ORs6Zaz7Leks7c90ihHzDnocBAIRKVhGoN_v3n1-7DqKQe7OUW-57UEBn6fRnlI0pLz2YScYnxomEGnj-sF-3tzRNkzQXybTduPbGIQi6An4DO9h_MppKuzIy2oRhyQQt_1RtesmwcorFa38YfxOZGEuFRdAp4LyLa8rXEDdpuMEcM9aBaKEQM2kzy-r1mXurxAYJMXYcu2CYQw3dkDy9g23qpbJ9Sz-0u9_jdWYmesHiUow"/>
+<p class="mt-4 text-lg font-bold text-primary-content">Jane Doe</p>
+<p class="text-sm text-base-content/70">Dhaka University</p>
+<p class="mt-2 text-sm text-base-content/70">Dhaka, Bangladesh</p>
+<button class="mt-auto w-full rounded-lg bg-primary py-2 text-center font-semibold text-primary-content transition-colors hover:bg-secondary mt-4">See</button>
+</div>
+<div class="flex flex-col items-center rounded-lg bg-base-200 p-6 text-center shadow-lg">
+<img alt="Profile picture of John Smith" class="h-24 w-24 rounded-full object-cover ring-4 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjtwwdlqQTVsaYEbALG85fHmKplSbdchgc3aJTOMcpWVFBoUpzDRVuvW1b8FzUkCCuuPnr0eGNncpTM9SFyUBNjB7n06D2Dz4gqZJ_0Fjq_XKRIYe71GD0im-vvZuo_txzVWPdpgpVVS_Wrd3fvAuRwdUY4Lx42CC8BubmUWZK0Q-2ho1BsN0h5oTQujX65kVtpQU33Y9Xze5_kjTE6wOcgnFevrEL6N-uBk-y61iVJ1FPhooIz9M7WikYl1bgKS-vGTI3lfgusQ"/>
+<p class="mt-4 text-lg font-bold text-primary-content">John Smith</p>
+<p class="text-sm text-base-content/70">BUET</p>
+<p class="mt-2 text-sm text-base-content/70">Chittagong, Bangladesh</p>
+<button class="mt-auto w-full rounded-lg bg-primary py-2 text-center font-semibold text-primary-content transition-colors hover:bg-secondary mt-4">See</button>
+</div>
+<div class="flex flex-col items-center rounded-lg bg-base-200 p-6 text-center shadow-lg">
+<img alt="Profile picture of Emily Johnson" class="h-24 w-24 rounded-full object-cover ring-4 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-qoCtlqAoBO0AtS7Fiuw2HtlweGBH14OWYGQBkgnUdo-virJPbXHfGCnan2_uPuZMM63eazPv-wP1yJbh0NgmqyBZ20DxIi3U3NKZYv3MIqXbmpFXaE1uYW9Jk4e-Qlutaza_qLwcy7FQKTn89eheMjL5qaRMYQPqQ71sOlwR2j14T3C1zbXWCfeFhNIGWyrP4D-nk8eMM0QitidHlg8hUyClS4LXdOhCXFtNsvURD7XBEX2hKSTGiJ750R6NCFH6SfW32hWBdQ"/>
+<p class="mt-4 text-lg font-bold text-primary-content">Emily Johnson</p>
+<p class="text-sm text-base-content/70">Dhaka Medical College</p>
+<p class="mt-2 text-sm text-base-content/70">Sylhet, Bangladesh</p>
+<button class="mt-auto w-full rounded-lg bg-primary py-2 text-center font-semibold text-primary-content transition-colors hover:bg-secondary mt-4">See</button>
+</div>
+<div class="flex flex-col items-center rounded-lg bg-base-200 p-6 text-center shadow-lg">
+<img alt="Profile picture of Michael Brown" class="h-24 w-24 rounded-full object-cover ring-4 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjIHitt16kiQ3jzyI3ZiwRPcIRn5t5n64JLXmcfRaTNuVLMFQXFcE6WFThNqo5QKjf-TprMdk7lAXPOT0C-F7xtB03jdqC7GTxkRGgAGdvuP4Sp0JFgQpH9TXpq9-m9IwPkKxOrzAGIzbhQSWCNA6QOb0KMMh1ttNlT4-n1m7hTcElZzeiy8oCr9rOsoP2FSIoj-yHvQcTejPBlV1yZFsqKznzk2ZJd8oZMGbcmQr5dlNLtVjiASPPLsoLETPfDiSRsLE6hgjLpA"/>
+<p class="mt-4 text-lg font-bold text-primary-content">Michael Brown</p>
+<p class="text-sm text-base-content/70">North South University</p>
+<p class="mt-2 text-sm text-base-content/70">Dhaka, Bangladesh</p>
+<button class="mt-auto w-full rounded-lg bg-primary py-2 text-center font-semibold text-primary-content transition-colors hover:bg-secondary mt-4">See</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+</body></html>

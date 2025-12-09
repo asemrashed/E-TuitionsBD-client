@@ -1,0 +1,114 @@
+[
+  {
+    "division_id": "1",
+    "division_name": "Barishal",
+    "districts": [
+      { "district_id": "1", "district_name": "Barguna" },
+      { "district_id": "2", "district_name": "Barishal" },
+      { "district_id": "3", "district_name": "Bhola" },
+      { "district_id": "4", "district_name": "Jhalokathi" },
+      { "district_name": "Patuakhali", "district_id": "5" },
+      { "district_id": "6", "district_name": "Pirojpur" }
+    ]
+  },
+  {
+    "division_id": "2",
+    "division_name": "Chattogram",
+    "districts": [
+      { "district_id": "7", "district_name": "Bandarban" },
+      { "district_id": "8", "district_name": "Brahmanbaria" },
+      { "district_id": "9", "district_name": "Chandpur" },
+      { "district_id": "10", "district_name": "Chittagong" },
+      { "district_id": "11", "district_name": "Comilla" },
+      { "district_id": "12", "district_name": "Cox's Bazar" },
+      { "district_id": "13", "district_name": "Feni" },
+      { "district_id": "14", "district_name": "Khagrachhari" },
+      { "district_id": "15", "district_name": "Lakshmipur" },
+      { "district_id": "16", "district_name": "Noakhali" },
+      { "district_id": "17", "district_name": "Rangamati" }
+    ]
+  },
+  {
+    "division_id": "3",
+    "division_name": "Dhaka",
+    "districts": [
+      { "district_id": "18", "district_name": "Dhaka" },
+      { "district_id": "19", "district_name": "Faridpur" },
+      { "district_id": "20", "district_name": "Gazipur" },
+      { "district_id": "21", "district_name": "Gopalganj" },
+      { "district_id": "22", "district_name": "Kishoreganj" },
+      { "district_id": "23", "district_name": "Madaripur" },
+      { "district_id": "24", "district_name": "Manikganj" },
+      { "district_id": "25", "district_name": "Munshiganj" },
+      { "district_id": "26", "district_name": "Narayanganj" },
+      { "district_id": "27", "district_name": "Narsingdi" },
+      { "district_id": "28", "district_name": "Rajbari" },
+      { "district_id": "29", "district_name": "Shariatpur" },
+      { "district_id": "30", "district_name": "Tangail" }
+    ]
+  },
+  {
+    "division_id": "4",
+    "division_name": "Khulna",
+    "districts": [
+      { "district_id": "31", "district_name": "Bagerhat" },
+      { "district_id": "32", "district_name": "Chuadanga" },
+      { "district_id": "33", "district_name": "Jashore" },
+      { "district_id": "34", "district_name": "Jhenaidah" },
+      { "district_id": "35", "district_name": "Khulna" },
+      { "district_id": "36", "district_name": "Kushtia" },
+      { "district_id": "37", "district_name": "Magura" },
+      { "district_id": "38", "district_name": "Meherpur" },
+      { "district_id": "39", "district_name": "Narail" },
+      { "district_id": "40", "district_name": "Satkhira" }
+    ]
+  },
+  {
+    "division_id": "5",
+    "division_name": "Mymensingh",
+    "districts": [
+      { "district_id": "41", "district_name": "Jamalpur" },
+      { "district_id": "42", "district_name": "Mymensingh" },
+      { "district_id": "43", "district_name": "Netrokona" },
+      { "district_id": "44", "district_name": "Sherpur" }
+    ]
+  },
+  {
+    "division_id": "6",
+    "division_name": "Rajshahi",
+    "districts": [
+      { "district_id": "45", "district_name": "Bogura" },
+      { "district_id": "46", "district_name": "Joypurhat" },
+      { "district_id": "47", "district_name": "Naogaon" },
+      { "district_id": "48", "district_name": "Natore" },
+      { "district_id": "49", "district_name": "Chapai Nawabganj" },
+      { "district_id": "50", "district_name": "Pabna" },
+      { "district_id": "51", "district_name": "Rajshahi" },
+      { "district_id": "52", "district_name": "Sirajganj" }
+    ]
+  },
+  {
+    "division_id": "7",
+    "division_name": "Rangpur",
+    "districts": [
+      { "district_id": "53", "district_name": "Dinajpur" },
+      { "district_id": "54", "district_name": "Gaibandha" },
+      { "district_id": "55", "district_name": "Kurigram" },
+      { "district_id": "56", "district_name": "Lalmonirhat" },
+      { "district_id": "57", "district_name": "Nilphamari" },
+      { "district_id": "58", "district_name": "Panchagarh" },
+      { "district_id": "59", "district_name": "Rangpur" },
+      { "district_id": "60", "district_name": "Thakurgaon" }
+    ]
+  },
+  {
+    "division_id": "8",
+    "division_name": "Sylhet",
+    "districts": [
+      { "district_id": "61", "district_name": "Habiganj" },
+      { "district_id": "62", "district_name": "Moulvibazar" },
+      { "district_id": "63", "district_name": "Sunamganj" },
+      { "district_id": "64", "district_name": "Sylhet" }
+    ]
+  }
+]

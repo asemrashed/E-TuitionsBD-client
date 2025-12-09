@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+
+:root {
+  --font-logo: 'Righteous', cursive;
+  --font-sans: 'Ubuntu', sans-serif;
+
+  /* Define custom colors so we can override them */
+  --color-primary: #2c7ef4;
+  --color-primary-content: #ffffff;
+  --color-secondary: #072f85;
+  --color-secondary-content: #ffffff;
+
+  --color-base-100: #0f172a;
+  /* Defaulting to Dark/Original */
+  --color-base-200: #1e293b;
+  --color-base-300: #334155;
+  --color-base-content: #e2e8f0;
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] {
+  --color-primary: #2c7ef4;
+  --color-primary-content: #ffffff;
+  --color-secondary: #072f85;
+  --color-secondary-content: #ffffff;
+  --color-base-100: #e9ecf2;
+  --color-base-200: #bbccf2;
+  --color-base-300: #81a6f7;
+  --color-base-content: #020817;
+}
+
+/* Dark Mode Overrides (Explicit) */
+[data-theme="dark"] {
+  --color-primary: #2c7ef4;
+  --color-primary-content: #ffffff;
+  --color-secondary: #072f85;
+  --color-secondary-content: #ffffff;
+  --color-base-100: #0f172a;
+  --color-base-200: #1e293b;
+  --color-base-300: #334155;
+  --color-base-content: #e2e8f0;
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-logo {
+  font-family: var(--font-logo);
+}
