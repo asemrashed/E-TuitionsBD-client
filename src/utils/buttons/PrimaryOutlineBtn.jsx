@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function PrimaryOutlineBtn({value, url}) {
   return (
-    <Link to={url} className="btn btn-outline hover:bg-primary hover:text-primary-content btn-xs md:btn-sm">
+    <Link to={url} className="btn btn-outline btn-primary hover:bg-primary hover:text-primary-content btn-xs md:btn-sm">
         {value}
     </Link>
   )
