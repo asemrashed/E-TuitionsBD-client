@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { delay, motion } from 'framer-motion';
 
 const stats = [
     { value: "10,000+", label: "Registered Tutors" },
@@ -12,13 +12,14 @@ const containerVariants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.2
+            staggerChildren: 0.1,
+            delay: 0.2
         }
     }
 };
 
 const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
+    hidden: { y: 20, opacity: 0 },
     visible: {
         y: 0,
         opacity: 1,
@@ -35,7 +36,7 @@ const Stats = () => {
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: true, amount: 0.1 }}
                 >
                     {stats.map((stat, index) => (
                         <motion.div

@@ -39,7 +39,7 @@ const Navbar = () => {
                                 <input
                                     type="text"
                                     placeholder="Search for tutors or subjects"
-                                    className="input input-sm md:input-md w-full rounded-full border-0 bg-base-300 pl-10 pr-4 text-base-content placeholder:text-gray-400 focus:ring-2 focus:ring-primary focus:outline-none"
+                                    className="input input-sm md:input-md w-full rounded-full border-0 bg-base-100 pl-10 pr-4 text-base-content placeholder:text-gray-400 focus:ring-2 focus:ring-primary focus:outline-none"
                                 />
                             </div>
                         </div>

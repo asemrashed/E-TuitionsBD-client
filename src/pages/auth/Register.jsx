@@ -154,7 +154,6 @@ const onSubmit = async (data) => {
           </label>
           <input
             type="password"
-            placeholder="••••••••"
             className={`input input-bordered w-full ${
               errors.password ? "input-error" : ""
             }`}

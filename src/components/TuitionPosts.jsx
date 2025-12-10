@@ -3,42 +3,7 @@ import { motion } from 'framer-motion';
 import { MdLocationOn, MdBook, MdPaid, MdPerson, MdSchedule } from 'react-icons/md';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import Loading from '../utils/loading/Loading';
-
-const posts = [
-    {
-        id: "#12345",
-        class: "Class 1-5",
-        timeAgo: "1h ago",
-        location: "Dhaka",
-        locationDetail: "Dhaka, Bangladesh",
-        subjects: "All Subjects",
-        salary: "BDT 5,000",
-        gender: "Any Gender",
-        time: "Flexible Time"
-    },
-    {
-        id: "#12346",
-        class: "Class 11-12",
-        timeAgo: "3h ago",
-        location: "Chittagong",
-        locationDetail: "Chittagong, Bangladesh",
-        subjects: "Physics, Chemistry, Math",
-        salary: "BDT 10,000",
-        gender: "Male",
-        time: "3 days/week"
-    },
-    {
-        id: "#12347",
-        class: "Class 6-8",
-        timeAgo: "5h ago",
-        location: "Sylhet",
-        locationDetail: "Sylhet, Bangladesh",
-        subjects: "English, Mathematics",
-        salary: "BDT 7,000",
-        gender: "Female",
-        time: "Evening"
-    }
-];
+import PrimaryBtn from '../utils/buttons/PrimaryBtn';
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -63,7 +28,7 @@ const TuitionPosts = () => {
         queryKey:["tuitions"],
         queryFn: async()=>{
             const res= await axiosSecure.get("/latest-tuitions?limit=3");
-            console.log(res.data);
+            // console.log(res.data);
             return res.data;
         }
     })
@@ -73,7 +38,10 @@ const TuitionPosts = () => {
     return (
         <section className="pb-16 bg-base-100">
             <div className="container mx-auto px-6">
-                <h3 className="mb-8 text-3xl font-bold text-center text-base-content dark:text-primary-content">Latest Tuition Posts</h3>
+                <div className="flex justify-between">
+                    <h3 className="mb-8 text-3xl font-bold text-center text-base-content dark:text-primary-content">Latest Tuition Posts</h3>
+                    <PrimaryBtn value="See More" url="/tuitions"/>
+                </div>
                 <motion.div
                     className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
                     variants={containerVariants}
@@ -84,8 +52,9 @@ const TuitionPosts = () => {
                     {tuitions.map((tuition, index) => (
                         <motion.div
                             key={index}
-                            className="flex flex-col rounded-lg bg-base-200 p-6 shadow-lg hover:shadow-xl transition-shadow border border-base-300 dark:border-none"
+                            className="flex flex-col justify-between rounded-lg bg-base-200 p-6 shadow-lg hover:shadow-xl transition-shadow border border-base-300 dark:border-none"
                             variants={cardVariants}
+                            whileHover={{y: -5}}
                         >
                             <div className="mb-4 flex items-center justify-between">
                                 <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">{tuition.class}</span>
@@ -136,9 +105,7 @@ const TuitionPosts = () => {
                                 </div>
                             </div>
 
-                            <button className="mt-auto w-full rounded-lg bg-primary py-2.5 text-center font-semibold text-primary-content transition-colors hover:bg-secondary">
-                                View Details
-                            </button>
+                            <PrimaryBtn value="View Details" url={`/tuition/${tuition._id}`}/>
                         </motion.div>
                     ))}
                 </motion.div>

@@ -21,7 +21,7 @@ const AuthLayout = () => {
                 transition={{ duration: 0.5 }}
             >
                 <div className="mb-8 text-center lg:text-left">
-                    <Link to="/" className="font-logo text-4xl font-bold text-primary dark:text-primary lg:text-primary-content mix-blend-difference">
+                    <Link to="/" className="font-logo text-4xl font-bold text-primary mix-blend-difference">
                         E-TuitionBD
                     </Link>
                 </div>
