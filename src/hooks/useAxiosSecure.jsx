@@ -8,12 +8,12 @@ const axiosSecure = axios.create({
 })
 
 const useAxiosSecure = () => {
-    const { userSignOut } = useAuth();
+    const { userSignOut, user } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
         axiosSecure.interceptors.request.use((config) => {
-            const token = localStorage.getItem('token');
+            const token = user?.accessToken;
             if (token) {
                 config.headers.authorization = `Bearer ${token}`;
             }

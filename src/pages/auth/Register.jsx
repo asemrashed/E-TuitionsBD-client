@@ -23,15 +23,16 @@ const onSubmit = async (data) => {
 
   const { firstName, lastName, email, password, role, image } = data;
   const profileImage = image[0];
-
+  const formData = new FormData();
+  formData.append("image", profileImage);
+  console.log('image',profileImage);
   try {
-    const formData = new FormData();
-    formData.append("image", profileImage);
     const imgAPIurl = `https://api.imgbb.com/1/upload?expiration=600&key=${
       import.meta.env.VITE_IMAGE_HOSTING_KEY
     }`;
-    
+    console.log('link',imgAPIurl);
     const imgResponse = await axios.post(imgAPIurl, formData);
+    console.log('imgResponse',imgResponse);
     const photoURL = imgResponse.data.data.url;
 
     const userResult = await userSignUp({ email, password });
