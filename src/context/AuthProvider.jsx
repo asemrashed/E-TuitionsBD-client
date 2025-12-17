@@ -18,7 +18,6 @@ const AuthProvider = ({ children }) => {
     const updateUserInfo = ({ userInfo }) => {
         setLoading(true);
         return updateProfile(auth.currentUser, userInfo)
-            .finally(() => setLoading(false));
     }
 
     const userSignIn = ({ email, password }) => {
@@ -35,10 +34,30 @@ const AuthProvider = ({ children }) => {
         const unmount = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser)
             setLoading(false)
-        })
-        return ()=> {
-            unmount()
-        }
+            if(currentUser){
+                const loggedUser = {email : currentUser.email}
+                fetch(`${import.meta.env.VITE_API_LINK}/getToken`,{
+                    method:"POST",
+                    headers:{
+                        'content-type':'application/json',
+                        'authorization': `Bearer ${currentUser.accessToken}`
+                    },
+                    body: JSON.stringify(loggedUser)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem('token', data.token)
+                })
+                .catch(err =>{
+                    console.log(err)
+                })
+            }else{
+                localStorage.removeItem('token')
+            }
+            })
+            return ()=> {
+                unmount()
+            }
     }, [])
 
     const userSignOut = () => {
