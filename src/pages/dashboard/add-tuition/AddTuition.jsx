@@ -207,18 +207,29 @@ const AddTuition = () => {
                     </select>
                 </div>
 
-                 <div className="form-control md:col-span-2">
+                 <div className="form-control flex flex-col">
                     <label className="label">
                         <span className="label-text font-semibold">Full Address</span>
                     </label>
                     <textarea 
-                        className="textarea textarea-bordered h-24" 
-                        placeholder="Detailed address info..."
+                        className="textarea textarea-bordered h-24 w-full" 
+                        placeholder="address..."
                         {...register("address", { required: true })}
                     ></textarea>
                 </div>
 
-                <div className="form-control md:col-span-2 mt-6">
+                 <div className="form-control flex flex-col">
+                    <label className="label">
+                        <span className="label-text font-semibold">Description</span>
+                    </label>
+                    <textarea 
+                        className="textarea textarea-bordered h-24 w-full" 
+                        placeholder="description..."
+                        {...register("description", { required: true })}
+                    ></textarea>
+                </div>
+
+                <div className="form-control md:col-span-2 mt-3">
                     <button type="submit" className="btn btn-primary w-full text-white text-lg">Post Tuition</button>
                 </div>
             </form>
