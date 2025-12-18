@@ -21,7 +21,7 @@ const onSubmit = async (data) => {
   setRegisterError("");
   setLoading(true); 
 
-  const { firstName, lastName, email, password, role, image } = data;
+  const { firstName, lastName, email, password, role, image, phoneNumber } = data;
   const profileImage = image[0];
   const formData = new FormData();
   formData.append("image", profileImage);
@@ -49,6 +49,7 @@ const onSubmit = async (data) => {
       email: userResult.user.email,
       photoURL: photoURL, 
       role: role,
+      phoneNumber: phoneNumber,
       status: "pending",
       createdAt: new Date(), 
     };

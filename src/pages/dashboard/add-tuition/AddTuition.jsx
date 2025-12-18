@@ -39,6 +39,7 @@ const AddTuition = () => {
         tutorName: user?.displayName,
         tutorEmail: user?.email,
         tutorPhoto: user?.photoURL,
+        phoneNumber: data?.phoneNumber,
       };
 
       const res = await axiosSecure.post("/tuitions", tuitionData);
@@ -106,9 +107,9 @@ const AddTuition = () => {
           </label>
           <input
             type="text"
-            placeholder="Your Contact Number"
+            placeholder="018......"
             className="input input-bordered w-full"
-            {...register("number", { required: true })}
+            {...register("phoneNumber", { required: true })}
           />
         </div>
 
