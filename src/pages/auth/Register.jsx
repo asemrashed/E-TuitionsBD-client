@@ -175,6 +175,30 @@ const onSubmit = async (data) => {
 
         <div className="form-control w-full">
           <label className="label">
+            <span className="label-text font-semibold">Phone number</span>
+          </label>
+          <input
+            type="number"
+            className={`input input-bordered w-full ${
+              errors.phoneNumber ? "input-error" : ""
+            }`}
+            {...register("phoneNumber", {
+              required: "Phone number is required",
+              minLength: {
+                value: 11,
+                message: "Phone number must be at least 11 characters",
+              },
+            })}
+          />
+          {errors.phoneNumber && (
+            <span className="text-error text-sm mt-1">
+              {errors.phoneNumber.message}
+            </span>
+          )}
+        </div>
+
+        <div className="form-control w-full">
+          <label className="label">
             <span className="label-text font-semibold">I am a</span>
           </label>
           <div className="grid grid-cols-2 gap-4">
