@@ -18,14 +18,11 @@ const cardVariants = {
     <motion.div
         className="flex flex-col justify-between rounded-lg bg-base-200 p-6 shadow-lg hover:shadow-xl transition-shadow border border-base-300 dark:border-none"
         variants={cardVariants}
-        initial="hidden"
-        whileInView="visible"
-        whileHover={{y: -5}}
+        whileHover={{ y: -5 }}
     >
         <div className="mb-4 flex items-center justify-between">
             <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">{tuition.class}</span>
             <div className="flex flex-col gap-2 text-sm text-base-content/70">
-                <span>ID: {tuition.id|| "232"}</span>
                 <span>{new Date(tuition.createdAt).toLocaleTimeString()}</span>
             </div>
         </div>

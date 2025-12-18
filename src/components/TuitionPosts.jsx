@@ -17,10 +17,10 @@ const containerVariants = {
 const TuitionPosts = () => {
     const axiosSecure= useAxiosSecure();
     const {data: tuitions=[], isLoading}= useQuery({
-        queryKey:["tuitions"],
+        queryKey:["latest-tuitions"],
         queryFn: async()=>{
             const res= await axiosSecure.get("/latest-tuitions?limit=3");
-            // console.log(res.data);
+            console.log(res.data);
             return res.data;
         }
     })

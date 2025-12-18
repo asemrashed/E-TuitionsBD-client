@@ -16,8 +16,6 @@ const cardVariants = {
     <motion.div
       className="flex flex-col items-center rounded-lg bg-base-100 p-6 text-center shadow-lg hover:shadow-xl transition-all border-1 border-primary border-base-300 dark:border-none"
       key={tutor._id}
-      initial="hidden"
-      whileInView="visible"
       variants={cardVariants}
       whileHover={{ y: -5 }}
     >

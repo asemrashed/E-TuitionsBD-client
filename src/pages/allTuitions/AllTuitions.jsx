@@ -7,18 +7,25 @@ import Loading from "../../utils/loading/Loading";
 import { FiFilter } from "react-icons/fi";
 
 const AllTuitions = () => {
-    const axiosSecure= useAxiosSecure();
-    const {data: tuitions=[], isLoading}= useQuery({
-        queryKey:["tuitions"],
-        queryFn: async()=>{
-            const res= await axiosSecure.get("/tuitions");
-            // console.log(res.data);
-            return res.data;
-        }
-    })
-    if(isLoading){
-        return <Loading/>
-    }
+  const axiosSecure = useAxiosSecure();
+  const { data: tuitions = [], isLoading } = useQuery({
+    queryKey: ["tuitions"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/tuitions");
+      console.log(res.data);
+      return res.data;
+    },
+  });
+  if (isLoading) {
+    return <Loading />;
+  }
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 },
+    },
+  };
   return (
     <div className="container mx-auto px-6 py-12">
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
@@ -48,11 +55,17 @@ const AllTuitions = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <motion.div
+        className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {tuitions.map(tuition => (
           <TuitionCard key={tuition._id} tuition={tuition} />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

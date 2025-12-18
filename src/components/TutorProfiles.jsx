@@ -18,7 +18,7 @@ const TutorProfiles = () => {
   const { data: tutors = [], isLoading } = useQuery({
     queryKey: ["tutors"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/tutors");
+      const res = await axiosSecure.get("/tutors?limit=4");
       // console.log(res.data);
       return res.data;
     },
@@ -40,7 +40,7 @@ const TutorProfiles = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           {tutors.map(tutor => (
             <TutorCard key={tutor._id} tutor={tutor} />
