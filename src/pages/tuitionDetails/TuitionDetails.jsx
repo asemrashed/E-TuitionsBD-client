@@ -26,16 +26,9 @@ const TuitionDetails = () => {
   })
   console.log(tuition);
 
-  const {address, description, class: className, createdAt, district, email, number, salary, subject, tutorGender, tutoringTime, _id}= tuition
-  const { data: student={}, isLoading: studentLoading }= useQuery({
-    queryKey: ['student', email],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/users?email=${email}`);
-      return res.data;
-    }
-  })
-  console.log('studed', student);
-  if(isLoading || studentLoading  ){
+  const {address, description, class: className, createdAt, district, email, number, salary, subject, tutorGender, studentGender, tutoringTime, _id}= tuition
+
+  if(isLoading ){
     return <Loading/>
   }
   return (
@@ -93,7 +86,7 @@ const TuitionDetails = () => {
         </InfoCard>
 
         <InfoCard icon={<MdPerson />} label="Student">
-          {tutorGender}
+          {studentGender}
         </InfoCard>
 
         <InfoCard icon={<MdPhone />} label="Mobile Number" className="col-span-2 md:col-span-1">

@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import locationData from "../../../../public/location.json";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../../../utils/loading/Loading";
 
 const AddTuition = () => {
   const { user } = useAuth();
@@ -20,6 +22,18 @@ const AddTuition = () => {
     );
     setDistricts(selectedDivision ? selectedDivision.districts : []);
   };
+
+  const { data: student = [], isLoading } = useQuery({
+    queryKey: ["student", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users?email=${user?.email}`);
+      return res.data;
+    },
+  });
+  console.log("student", student);
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const onSubmit = async data => {
     try {
@@ -106,8 +120,9 @@ const AddTuition = () => {
             <span className="label-text font-semibold">Phone Number</span>
           </label>
           <input
-            type="text"
-            placeholder="018......"
+            type="number"
+            defaultValue={student?.phoneNumber}
+            readOnly
             className="input input-bordered w-full"
             {...register("phoneNumber", { required: true })}
           />
@@ -153,23 +168,42 @@ const AddTuition = () => {
           />
         </div>
 
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text font-semibold">
-              Preferred Tutor Gender
-            </span>
-          </label>
-          <select
-            className="select select-bordered w-full"
-            {...register("tutorGender", { required: true })}
-          >
-            <option disabled selected>
-              Select Gender
-            </option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Any</option>
-          </select>
+        <div className="grid grid-cols-2 gap-2">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-semibold">
+                Preferred Tutor Gender
+              </span>
+            </label>
+            <select
+              className="select select-bordered w-full"
+              {...register("tutorGender", { required: true })}
+            >
+              <option disabled selected>
+                Select Gender
+              </option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Any</option>
+            </select>
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-semibold">
+                Student Gender
+              </span>
+            </label>
+            <select
+              className="select select-bordered w-full"
+              {...register("studentGender", { required: true })}
+            >
+              <option disabled selected>
+                Select Gender
+              </option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
         </div>
 
         <div className="form-control">
