@@ -19,7 +19,7 @@ const Profile = () => {
     if(isLoading || !user){
         return <Loading/>
     }
-    const {displayName, email, photoURL, role,  phoneNumber, address, division, district, institution, degree, graduationYear}= userData;
+    const {displayName, email, photoURL, role,  phoneNumber, address, division, district, institution, degree, experience, graduationYear}= userData;
   return (
     <div className="w-full p-4 md:p-8 text-content-dark">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 p-6 bg-base-200 rounded-xl shadow">
@@ -107,6 +107,13 @@ const Profile = () => {
                     Graduation Year
                   </p>
                   <p className="font-medium">{graduationYear || "Not added yet"}</p>
+                </div>
+
+                <div>
+                  <p className="text-sm text-gray-400">
+                    Experience
+                  </p>
+                  <p className="font-medium">{experience || "Not added yet"}</p>
                 </div>
               </div>
             </div>

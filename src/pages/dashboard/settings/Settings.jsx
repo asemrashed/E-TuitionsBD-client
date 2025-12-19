@@ -8,6 +8,7 @@ import useAuth from "../../../hooks/useAuth";
 import Loading from "../../../utils/loading/Loading";
 import axios from "axios";
 import Swal from "sweetalert2";
+import locationData from "../../../../public/location.json";
 
 const Settings = () => {
   const { user, updateUserInfo } = useAuth();
@@ -15,6 +16,7 @@ const Settings = () => {
   const navigate = useNavigate();
   const [preview, setPreview] = useState("");
   const [saving, setSaving] = useState(false);
+  const [districts, setDistricts] = useState([]);
   const queryClient = useQueryClient();
 
   const { register, handleSubmit, reset } = useForm();
@@ -33,6 +35,7 @@ const Settings = () => {
     email,
     photoURL,
     phoneNumber,
+    experience,
     address,
     division,
     district,
@@ -41,50 +44,83 @@ const Settings = () => {
     graduationYear,
   } = userData;
 
-  useEffect(() => {
-    reset({
-      displayName,
-      phoneNumber,
-      address,
-      division,
-      district,
-      institution,
-      degree,
-      graduationYear,
-    });
-    setPreview(photoURL);
-  }, [userData, reset, photoURL]);
+  const handleDivisionChange = (e) => {
+    const divisionId = e.target.value;
+    const selectedDivision = locationData.find(
+      (div) => div.division_id === divisionId
+    );
+    setDistricts(selectedDivision ? selectedDivision.districts : []);
+  };
 
-  const handleImageChange = async e => {
+  useEffect(() => {
+    if (userData.email) {
+      // Find division ID from name if possible
+      const foundDiv = locationData.find((d) => d.division_name === division);
+      const divId = foundDiv ? foundDiv.division_id : "";
+
+      if (foundDiv) {
+        setDistricts(foundDiv.districts);
+      }
+
+      const foundDist = foundDiv?.districts.find(
+        (d) => d.district_name === district
+      );
+      const distId = foundDist ? foundDist.district_id : "";
+
+      reset({
+        displayName,
+        phoneNumber,
+        experience,
+        address,
+        division: divId,
+        district: distId, 
+        institution,
+        degree,
+        graduationYear,
+      });
+      setPreview(photoURL);
+    }
+  }, [userData, reset, photoURL, division, district]);
+
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       const formData = new FormData();
-    formData.append("image", file);
-    const imgAPIurl = `https://api.imgbb.com/1/upload?expiration=600&key=${
-      import.meta.env.VITE_IMAGE_HOSTING_KEY
-    }`;
+      formData.append("image", file);
+      const imgAPIurl = `https://api.imgbb.com/1/upload?expiration=600&key=${
+        import.meta.env.VITE_IMAGE_HOSTING_KEY
+      }`;
 
-    const imgResponse = await axios.post(imgAPIurl, formData);
-    const photoURL = imgResponse.data.data.url;
-    setPreview(photoURL);
+      const imgResponse = await axios.post(imgAPIurl, formData);
+      const photoURL = imgResponse.data.data.url;
+      setPreview(photoURL);
+    }
   };
-}
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
+    const divisionName = locationData.find(
+      (div) => div.division_id === data.division
+    )?.division_name;
+    const districtName = districts.find(
+      (dist) => dist.district_id === data.district
+    )?.district_name;
+
     Swal.fire({
       title: "Are you sure?",
-      text: `You wan't change your data!`,
+      text: `You want to change your data!`,
       icon: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, Change it!",
-    }).then(async result => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           setSaving(true);
           await axiosSecure.patch(`/users/me?email=${email}`, {
             ...data,
+            division: divisionName || data.division,
+            district: districtName || data.district,
             photoURL: preview,
           });
           await updateUserInfo({
@@ -156,7 +192,7 @@ const Settings = () => {
           <div>
             <label className="label">Phone Number</label>
             <input
-              {...register("phoneNumber")}
+              {...register("phoneNumber", { required: true })}
               className="input input-bordered w-full"
             />
           </div>
@@ -164,7 +200,7 @@ const Settings = () => {
           <div>
             <label className="label">Institution</label>
             <input
-              {...register("institution")}
+              {...register("institution", { required: true })}
               className="input input-bordered w-full"
             />
           </div>
@@ -172,7 +208,7 @@ const Settings = () => {
           <div>
             <label className="label">Degree</label>
             <input
-              {...register("degree")}
+              {...register("degree", { required: true })}
               className="input input-bordered w-full"
             />
           </div>
@@ -180,33 +216,76 @@ const Settings = () => {
           <div>
             <label className="label">Graduation Year</label>
             <input
-              {...register("graduationYear")}
+              {...register("graduationYear", { required: true })}
               className="input input-bordered w-full"
             />
           </div>
 
-          <div className="md:col-span-2">
+          <div>
+            <label className="label">Experience</label>
+            <select
+              className="select select-bordered w-full"
+              {...register("experience", { required: true })}
+            >
+              <option disabled selected value="">
+                Select Experience
+              </option>
+              <option>6 month+</option>
+              <option>1 year+</option>
+              <option>2 year+</option>
+              <option>3 year+</option>
+              <option>4 year+</option>
+              <option>5 year+</option>
+              <option>20 year+</option>
+            </select>
+          </div>
+
+          <div>
             <label className="label">Address</label>
             <input
-              {...register("address")}
+              {...register("address", { required: true })}
               className="input input-bordered w-full"
             />
           </div>
 
-          <div>
-            <label className="label">Division</label>
-            <input
-              {...register("division")}
-              className="input input-bordered w-full"
-            />
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-semibold">Division</span>
+            </label>
+            <select
+              className="select select-bordered w-full"
+              {...register("division", { required: true })}
+              onChange={handleDivisionChange}
+            >
+              <option disabled selected value="">
+                Select Division
+              </option>
+              {locationData.map((div) => (
+                <option key={div.division_id} value={div.division_id}>
+                  {div.division_name}
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div>
-            <label className="label">District</label>
-            <input
-              {...register("district")}
-              className="input input-bordered w-full"
-            />
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-semibold">District</span>
+            </label>
+            <select
+              className="select select-bordered w-full"
+              {...register("district", { required: true })}
+              disabled={districts.length === 0}
+            >
+              <option disabled selected value="">
+                Select District
+              </option>
+              {districts.map((dist) => (
+                <option key={dist.district_id} value={dist.district_id}>
+                  {dist.district_name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
