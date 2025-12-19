@@ -68,7 +68,7 @@ const cardVariants = {
             </div>
         </div>
 
-        <PrimaryBtn value="View Details" url={`/tuition/${tuition._id}`}/>
+        <PrimaryBtn value="View Details" url={`/tuitions/${tuition._id}`}/>
     </motion.div>
   )
 }

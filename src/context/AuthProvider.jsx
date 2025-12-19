@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unmount = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser)
-            console.log(currentUser)
+            // console.log(currentUser)
             setLoading(false)
             if(currentUser){
                 const loggedUser = {email : currentUser.email}

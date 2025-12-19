@@ -18,6 +18,7 @@ import MyApplications from '../pages/dashboard/my-applications/MyApplications';
 import OngoingTuitions from '../pages/dashboard/ongoing-tuitions/OngoingTuitions';
 import Settings from '../pages/dashboard/settings/Settings';
 import NotFound from '../pages/error/NotFound';
+import TuitionDetails from '../pages/tuitionDetails/TuitionDetails';
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             { path: "tuitions", element: <AllTuitions /> },
+            { path: "tuitions/:id", element: <TuitionDetails /> },
             { path: "tutors", element: <AllTutors /> },
             { path: "contact", element: <div>Contact Page</div> },
         ],
