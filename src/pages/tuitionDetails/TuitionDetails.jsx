@@ -40,16 +40,17 @@ const TuitionDetails = () => {
       return res.data;
     },
   });
-  const currentTutor = tutorData?.status === "active"
-
+  const currentTutor = tutorData
+  console.log('afsdf',currentTutor)
   useEffect(() => {
     if (currentTutor && isModalOpen) {
       reset({
-        name: currentTutor.name || user?.displayName,
-        image: currentTutor.image || user?.photoURL,
-        qualifications: currentTutor.qualifications || "",
-        experience: currentTutor.experience || "",
-        salary: currentTutor.salary || "",
+        name: currentTutor?.displayName || user?.displayName,
+        email: currentTutor?.email || user?.email,
+        image: currentTutor?.photoURL || user?.photoURL,
+        qualifications: currentTutor?.degree || "",
+        experience: currentTutor?.experience || "",
+        salary: "",
       });
     }
   }, [currentTutor, isModalOpen, reset, user]);
@@ -92,26 +93,28 @@ const TuitionDetails = () => {
 
   const onSubmit = async (data) => {
     try {
-      // Assuming we need to update the tutor's data
-      // And we might need to link this application to the tuition? 
-      // The prompt says "update tutor data with a new field 'applicationStatus: pending'".
-      // It doesn't explicitly say to create an 'Application' record, but updating tutor data implies the tutor's status changes?
-      // Or maybe it means "Apply for this tuition" -> Update tutor's status? 
-      // Re-reading: "update tutor data with a new field. 'applicationStatus: pending'".
-      // This implies the Tutor object itself gets this field. 
-      // This seems slightly odd for a many-to-many relationship (Tutors apply to Tuitions), 
-      // but I will follow the instruction literally: Update Tutor Data.
+
       
       if (!currentTutor?._id) return;
 
       const updateData = {
+        tutorName: data.name,
+        tutorImage: tutorData?.photoURL,
+        tutorQualifications: data.qualifications,
+        tutorExperience: data.experience,
+        tutorSalary: data.salary,
         applicationStatus: "pending",
         tuitionId: tuitionId,
+        tutorId: currentTutor._id,
+        studentEmail: email,
+        location: address,
+        district: district,
+        subject: subject,
       };
 
-      const res = await axiosSecure.patch(`/tutors/${currentTutor._id}`, updateData);
+      const res = await axiosSecure.post(`/applications`, updateData);
 
-      if (res.data.modifiedCount) {
+      if (res.data.insertedId) {
         Swal.fire({
           icon: "success",
           title: "Application Submitted",
@@ -238,11 +241,12 @@ const TuitionDetails = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Profile Picture URL</span>
+                  <span className="label-text">Tutor email</span>
                 </label>
                 <input
-                  type="text"
-                  {...register("image", { required: true })} // Assuming URL string
+                  type="email"
+                  readOnly
+                  {...register("email", { required: true })}
                   className="input input-bordered w-full"
                 />
               </div>

@@ -1,12 +1,17 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loading from "../../../utils/loading/Loading";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
+import UpdateProfileModal from "../../../components/modal/UpdateProfileModal";
 
 const UsersManagement = () => {
   const axiosSecure = useAxiosSecure();
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const {
     data: users = [],
     refetch,
@@ -38,6 +43,21 @@ const UsersManagement = () => {
       }
     });
   };
+
+  const handleEdit = (user) => {
+      Swal.fire({
+          title: "Are you sure?",
+          text: "You want edit this user data?",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonText: "Yes, Edit",
+      }).then((result) => {
+          if(result.isConfirmed) {
+              setSelectedUser(user);
+              setIsModalOpen(true);
+          }
+      });
+  }
 
   const updateStatus = async (user, status) => {
     const result = await Swal.fire({
@@ -138,7 +158,10 @@ const UsersManagement = () => {
                     )}
                   </li>
                   <li className="no-underline order-7 flex gap-3 md:gap-5 justify-end md:justify-start">
-                    <button className="text-lg text-primary cursor-pointer">
+                    <button 
+                        onClick={() => handleEdit(user)}
+                        className="text-lg text-primary cursor-pointer"
+                    >
                       <FaRegEdit />
                     </button>
                     <button
@@ -157,6 +180,15 @@ const UsersManagement = () => {
         <div className="text-lg md:text-xl text-center">
           No parcel sends yet
         </div>
+      )}
+      
+      {selectedUser && (
+          <UpdateProfileModal 
+            isOpen={isModalOpen} 
+            onClose={() => setIsModalOpen(false)} 
+            user={selectedUser} 
+            refetch={refetch}
+          />
       )}
     </div>
   );
