@@ -41,14 +41,13 @@ const TuitionDetails = () => {
     },
   });
   const currentTutor = tutorData
-  console.log('afsdf',currentTutor)
   useEffect(() => {
     if (currentTutor && isModalOpen) {
       reset({
         name: currentTutor?.displayName || user?.displayName,
         email: currentTutor?.email || user?.email,
         image: currentTutor?.photoURL || user?.photoURL,
-        qualifications: currentTutor?.degree || "",
+        qualifications: currentTutor?.study || "",
         experience: currentTutor?.experience || "",
         salary: "",
       });
@@ -99,6 +98,7 @@ const TuitionDetails = () => {
 
       const updateData = {
         tutorName: data.name,
+        tutorEmail: data.email,
         tutorImage: tutorData?.photoURL,
         tutorQualifications: data.qualifications,
         tutorExperience: data.experience,

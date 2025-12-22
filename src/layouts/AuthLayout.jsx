@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 const AuthLayout = () => {
     return (
         <div className="min-h-screen flex bg-base-100 relative overflow-hidden">
-            {/* Mobile Background Image (Blurry) */}
             <div
                 className="absolute inset-0 z-0 lg:hidden bg-cover bg-center"
                 style={{
@@ -13,7 +12,6 @@ const AuthLayout = () => {
                 }}
             />
 
-            {/* Content Section (Left on Desktop, Centered on Mobile) */}
             <motion.div
                 className="w-full lg:w-1/2 z-10 flex flex-col justify-center px-8 md:px-16"
                 initial={{ opacity: 0, x: -50 }}
@@ -31,7 +29,6 @@ const AuthLayout = () => {
                 </div>
             </motion.div>
 
-            {/* Image Section (Right on Desktop) */}
             <motion.div
                 className="hidden lg:block w-1/2 relative bg-primary/5"
                 initial={{ opacity: 0, x: 50 }}

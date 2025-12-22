@@ -27,7 +27,7 @@ const cardVariants = {
       <p className="mt-4 text-lg font-bold text-primary">{tutor.displayName}</p>
       <p className="mt-2 text-sm text-base-content/70">{tutor.email}</p>
       <p className="my-2 text-sm text-base-content/70">
-        {tutor.district || "not added"}
+        {tutor.institution || "not added"}
       </p>
       <PrimaryOutlineBtn value="See Profile" url={`/tutors/${tutor._id}`} />
     </motion.div>

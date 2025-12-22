@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loading from "../../../utils/loading/Loading";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { RiAdminLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import UpdateProfileModal from "../../../components/modal/UpdateProfileModal";
 
@@ -37,6 +38,7 @@ const UsersManagement = () => {
       if (result.isConfirmed) {
         const res = await axiosSecure.delete(`/users/${id}`);
         if (res.data.deletedCount > 0) {
+          await axiosSecure.delete(`/tutors/${id}`);
           refetch();
           Swal.fire("Deleted!", "Your user has been removed.", "warning");
         }
@@ -71,22 +73,51 @@ const UsersManagement = () => {
       confirmButtonText: "Yes",
     });
 
-    if (result.isConfirmed) {
-      const res = await axiosSecure.patch(`/users/${user._id}`, { status });
-      if (res.data.modifiedCount > 0) {
-        if (status === "active") {
-          user.status = "active";
-          await axiosSecure
-            .post("/tutors", user)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
+    const makeAdmin = async (user) => {
+      const result = await Swal.fire({
+        title: "Are you sure to make this user admin?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+      });
+
+      if (result.isConfirmed) {
+        try {
+          const res = await axiosSecure.patch(`/users/${user._id}`, { role: "admin" });
+          if (res.data.modifiedCount > 0) {
+            await refetch();
+            Swal.fire("Made Admin!", "User has been made admin.", "success");
+          }
+        } catch (err) {
+          console.error(err);
+          Swal.fire("Error", "Failed to make user admin", "error");
         }
-        refetch();
-        Swal.fire(
-          `${status === "active" ? "Activated" : "Rejected"}`,
-          "",
-          status === "active" ? "success" : "warning"
-        );
+      }
+    }
+
+    if (result.isConfirmed) {
+      try {
+        const res = await axiosSecure.patch(`/users/${user._id}`, { status });
+        if (res.data.modifiedCount > 0) {
+          if (status === "active") {
+             try {
+                await axiosSecure.post("/tutors", { ...user, status: 'active' });
+             } catch (err) {
+                console.error("Error creating tutor profile:", err);
+             }
+          }
+          
+          await refetch();
+          
+          Swal.fire(
+            `${status === "active" ? "Activated" : "Rejected"}`,
+            "",
+            status === "active" ? "success" : "warning"
+          );
+        }
+      } catch (err) {
+        console.error(err);
+        Swal.fire("Error", "Failed to update status", "error");
       }
     }
   };
@@ -99,7 +130,7 @@ const UsersManagement = () => {
           <div className="w-full [text-decoration:none]">
             <div>
               <ul className="hidden md:grid grid-cols-[60px_1.5fr_1.5fr_0.5fr_0.5fr_1fr_1fr] items-center px-3 py-3 bg-base-300">
-                <li className="no-underline">SL No</li>
+                <li className="no-underline">#</li>
                 <li className="no-underline">Name</li>
                 <li className="no-underline">Email</li>
                 <li className="no-underline">Role</li>
@@ -159,12 +190,21 @@ const UsersManagement = () => {
                   </li>
                   <li className="no-underline order-7 flex gap-3 md:gap-5 justify-end md:justify-start">
                     <button 
+                        title="Edit User"
                         onClick={() => handleEdit(user)}
                         className="text-lg text-primary cursor-pointer"
                     >
                       <FaRegEdit />
                     </button>
+                    <button 
+                        title="Make Admin"
+                        onClick={() => makeAdmin(user)}
+                        className="text-lg text-success cursor-pointer"
+                    >
+                      <RiAdminLine />
+                    </button>
                     <button
+                      title="Delete User"
                       onClick={() => handleDelete(user._id)}
                       className="text-lg text-error cursor-pointer"
                     >

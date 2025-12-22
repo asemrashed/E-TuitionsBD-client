@@ -1,10 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { MdLocationOn, MdBook, MdPaid, MdPerson, MdSchedule } from 'react-icons/md';
-import useAxiosSecure from '../hooks/useAxiosSecure';
-import Loading from '../utils/loading/Loading';
-import PrimaryBtn from '../utils/buttons/PrimaryBtn';
-import TuitionCard from './tutor/tuition/TuitionCard';
+import TuitionCard from '../../components/tutor/tuition/TuitionCard';
+import PrimaryBtn from '../../utils/buttons/PrimaryBtn';
+import Loading from '../../utils/loading/Loading';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -20,7 +19,6 @@ const TuitionPosts = () => {
         queryKey:["latest-tuitions"],
         queryFn: async()=>{
             const res= await axiosSecure.get("/latest-tuitions?limit=3");
-            console.log(res.data);
             return res.data;
         }
     })

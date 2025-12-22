@@ -1,7 +1,9 @@
 import Hero from '../../components/Hero';
 import Stats from '../../components/Stats';
-import TuitionPosts from '../../components/TuitionPosts';
-import TutorProfiles from '../../components/TutorProfiles';
+import HowItWorks from './HowWorks';
+import LatestTutor from './LatestTutor';
+import TuitionPosts from './TuitionPosts';
+import Footer from '../../components/Footer';
 
 const Home = () => {
     return (
@@ -9,7 +11,9 @@ const Home = () => {
             <Hero />
             <Stats />
             <TuitionPosts />
-            <TutorProfiles />
+            <LatestTutor />
+            <HowItWorks />
+            <Footer />
         </>
     );
 };

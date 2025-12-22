@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import SocialLogin from "./SocialLogin";
@@ -14,6 +14,8 @@ const Register = () => {
   } = useForm();
   const { userSignUp, updateUserInfo, setLoading } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state|| "/";
   const [registerError, setRegisterError] = useState("");
   const axiosSecure = useAxiosSecure();
 
@@ -25,14 +27,11 @@ const onSubmit = async (data) => {
   const profileImage = image[0];
   const formData = new FormData();
   formData.append("image", profileImage);
-  console.log('image',profileImage);
   try {
-    const imgAPIurl = `https://api.imgbb.com/1/upload?expiration=600&key=${
+    const imgAPIurl = `https://api.imgbb.com/1/upload?key=${
       import.meta.env.VITE_IMAGE_HOSTING_KEY
     }`;
-    console.log('link',imgAPIurl);
     const imgResponse = await axios.post(imgAPIurl, formData);
-    console.log('imgResponse',imgResponse);
     const photoURL = imgResponse.data.data.url;
 
     const userResult = await userSignUp({ email, password });
@@ -56,7 +55,7 @@ const onSubmit = async (data) => {
 
     await axiosSecure.post("/users", newUser);
     
-    navigate("/");
+    navigate(from, { replace: true });
     
   } catch (error) {
     console.error("Registration error:", error);
@@ -156,6 +155,7 @@ const onSubmit = async (data) => {
           </label>
           <input
             type="password"
+            placeholder="********"
             className={`input input-bordered w-full ${
               errors.password ? "input-error" : ""
             }`}

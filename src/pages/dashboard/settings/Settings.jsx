@@ -32,7 +32,7 @@ const Settings = () => {
       division,
       district,
       institution,
-      degree,
+      study,
       graduationYear,
       experience,
       role
@@ -80,16 +80,16 @@ const Settings = () => {
              <span className="font-bold block text-sm text-gray-500">Institution</span>
              <span>{institution || "N/A"}</span>
           </div>
-          <div>
-             <span className="font-bold block text-sm text-gray-500">Degree</span>
-             <span>{degree || "N/A"}</span>
+          <div >
+             <span className="font-bold block text-sm text-gray-500">Study</span>
+             <span>{study || "N/A"}</span>
           </div>
-          <div>
+          <div className={role === "tutor" ? "" : "hidden"}>
              <span className="font-bold block text-sm text-gray-500">Graduation Year</span>
              <span>{graduationYear || "N/A"}</span>
           </div>
            {role === 'tutor' && (
-             <div>
+             <div className={`${role === "tutor" ? "" : "hidden"}`}>
                 <span className="font-bold block text-sm text-gray-500">Experience</span>
                 <span>{experience || "N/A"}</span>
              </div>

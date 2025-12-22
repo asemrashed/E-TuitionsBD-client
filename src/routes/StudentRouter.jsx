@@ -3,7 +3,7 @@ import useAuth from '../hooks/useAuth';
 import useRole from '../hooks/useRole';
 import Loading from '../utils/loading/Loading';
 
-const TutorRoute = ({children}) => {
+const StudentRoute = ({children}) => {
     const {loading} = useAuth()
     const {role, isLoading} = useRole()
 
@@ -11,10 +11,10 @@ const TutorRoute = ({children}) => {
         return <Loading/>
     }
     
-    if(role !== 'tutor'){
+    if(role !== 'student'){
         return <div className='text-3xl w-full h-full flex items-center justify-center'>Forbidden Route</div>
     }
     return children
 };
 
-export default TutorRoute;
+export default StudentRoute;

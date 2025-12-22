@@ -11,7 +11,6 @@ const AllTutors = () => {
     queryKey: ["tutors"],
     queryFn: async () => {
       const res = await axiosSecure.get("/tutors");
-      // console.log(res.data);
       return res.data;
     },
   });
@@ -29,7 +28,6 @@ const containerVariants = {
   return (
     <div className="container mx-auto px-6 py-12">
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
-        {/* Search Bar (Left w-1/4) */}
         <div className="w-full md:w-1/4 relative">
           <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
@@ -39,10 +37,8 @@ const containerVariants = {
           />
         </div>
 
-        {/* Title */}
         <h2 className="text-2xl font-bold hidden md:block">Find Tutors</h2>
 
-        {/* Sort/Categories (Right w-1/4) */}
         <div className="w-full md:w-1/4 relative">
           <select className="select select-bordered w-full rounded-lg focus:ring-2 focus:ring-primary focus:outline-none">
             <option disabled selected>
@@ -58,10 +54,9 @@ const containerVariants = {
       </div>
         <motion.div
           className="grid grid-cols-1 gap-6 md:gap-10 sm:grid-cols-2 lg:grid-cols-4"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
           {tutors.map(tutor => (
             <TutorCard key={tutor._id} tutor={tutor} />

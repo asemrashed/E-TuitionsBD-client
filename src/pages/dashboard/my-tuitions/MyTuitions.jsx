@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
@@ -6,12 +7,16 @@ import { Link } from "react-router-dom";
 import { TbListDetails } from "react-icons/tb";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import UpdateTuitionModal from "../../../components/modal/UpdateTuitionModal";
+import Swal from "sweetalert2";
 
 const MyTuitions = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedTuition, setSelectedTuition] = useState(null);
 
-    const { data: myTuitions = [], isLoading } = useQuery({
+    const { data: myTuitions = [], isLoading, refetch } = useQuery({
         queryKey: ['my-tuitions', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
@@ -19,6 +24,43 @@ const MyTuitions = () => {
             return res.data;
         }
     });
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/tuitions/${id}`)
+                .then(() => {
+                    refetch();
+                    Swal.fire(
+                        "Deleted!",
+                        "Your tuition has been deleted.",
+                        "success"
+                    );
+                })
+                .catch((error) => {
+                    console.error("Error deleting tuition:", error);
+                    Swal.fire(
+                        "Error!",
+                        "Failed to delete tuition.",
+                        "error"
+                    );
+                });
+            }
+        });
+    }
+
+    const handleEdit = (tuition) => {
+        setSelectedTuition(tuition);
+        setIsModalOpen(true);
+    }
 
     if (isLoading) return <Loading />;
 
@@ -75,10 +117,14 @@ const MyTuitions = () => {
                                     </td>
                                     <td>
                                         <div className="join">
-                                            <button className="btn btn-ghost btn-xs join-item text-primary tooltip" data-tip="View Details">
+                                            <Link to={`/tuitions/${item._id}`} className="btn btn-ghost btn-xs join-item text-primary tooltip" data-tip="View Details">
                                                 <TbListDetails className="text-lg mr-1"/>
-                                            </button>
-                                            <button className="btn btn-ghost btn-xs join-item text-info tooltip" data-tip="Edit">
+                                            </Link>
+                                            <button 
+                                                onClick={() => handleEdit(item)}
+                                                className="btn btn-ghost btn-xs join-item text-info tooltip" 
+                                                data-tip="Edit"
+                                            >
                                                 <FaRegEdit className="text-lg mr-1"/>
                                             </button>
                                             <button className="btn btn-ghost btn-xs join-item text-error tooltip" data-tip="Delete">
@@ -92,6 +138,13 @@ const MyTuitions = () => {
                     </tbody>
                 </table>
             </div>
+
+            <UpdateTuitionModal 
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                tuition={selectedTuition}
+                refetch={refetch}
+            />
         </div>
     );
 };

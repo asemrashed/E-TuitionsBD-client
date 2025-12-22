@@ -12,7 +12,6 @@ const AllTuitions = () => {
     queryKey: ["tuitions"],
     queryFn: async () => {
       const res = await axiosSecure.get("/tuitions");
-      console.log(res.data);
       return res.data;
     },
   });

@@ -19,6 +19,16 @@ import OngoingTuitions from '../pages/dashboard/ongoing-tuitions/OngoingTuitions
 import Settings from '../pages/dashboard/settings/Settings';
 import NotFound from '../pages/error/NotFound';
 import TuitionDetails from '../pages/tuitionDetails/TuitionDetails';
+import Success from '../pages/dashboard/payments/Success';
+import Cancelled from '../pages/dashboard/payments/Cancelled';
+import PrivetRoute from './PrivetRoute';
+import AdminRoute from './AdminRoute';
+import TutorRoute from './TutorRoute';
+import StudentRoute from './StudentRouter';
+import Contact from '../pages/contact/Contact';
+
+import DashboardHome from '../pages/dashboard/DashboardHome';
+import AdminLogin from '../pages/auth/AdminLogin';
 
 const router = createBrowserRouter([
     {
@@ -33,22 +43,25 @@ const router = createBrowserRouter([
             { path: "tuitions", element: <AllTuitions /> },
             { path: "tuitions/:id", element: <TuitionDetails /> },
             { path: "tutors", element: <AllTutors /> },
-            { path: "contact", element: <div>Contact Page</div> },
+            { path: "contact", element: <Contact /> }
         ],
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: <PrivetRoute><DashboardLayout /></PrivetRoute>,
         children: [
+            { index: true, element: <DashboardHome /> }, 
             { path: "profile", element: <Profile /> },
-            { path: "tuitions-list", element: <TuitionsManagement /> },
-            { path: "users-list", element: <UsersManagement /> },
-            { path: "my-tuitions", element: <MyTuitions /> },
-            { path: "applied-tutors", element: <AppliedTutors /> },
-            { path: "add-tuition", element: <AddTuition /> },
+            { path: "tuitions-list", element: <AdminRoute><TuitionsManagement /></AdminRoute> },
+            { path: "users-list", element: <AdminRoute><UsersManagement /></AdminRoute> },
+            { path: "my-tuitions", element: <StudentRoute><MyTuitions /></StudentRoute> },
+            { path: "applied-tutors", element: <StudentRoute><AppliedTutors /></StudentRoute> },
+            { path: "add-tuition", element: <StudentRoute><AddTuition /></StudentRoute> },
             { path: "payments", element: <Payments /> },
-            { path: "my-applications", element: <MyApplications /> },
-            { path: "ongoing-tuitions", element: <OngoingTuitions /> },
+            { path: "payment-success", element: <Success /> },
+            { path: "payment-cancelled", element: <Cancelled /> },
+            { path: "my-applications", element: <TutorRoute><MyApplications /></TutorRoute> },
+            { path: "ongoing-tuitions", element: <TutorRoute><OngoingTuitions /></TutorRoute> },
             { path: "settings", element: <Settings /> },
         ]
     },
@@ -62,6 +75,10 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />,
+            },
+            {
+                path: "/admin",
+                element: <AdminLogin />,
             }
         ]
     }

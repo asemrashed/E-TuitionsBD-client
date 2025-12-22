@@ -1,11 +1,12 @@
 import React from "react";
-import { Link, Outlet, NavLink } from "react-router-dom";
+import { Link, Outlet, NavLink, useNavigate } from "react-router-dom";
 import { PiSidebarSimpleDuotone } from "react-icons/pi";
 import ThemeToggle from "../utils/buttons/ThemeToggle";
 import useRole from "../hooks/useRole";
+import useAuth from "../hooks/useAuth";
 import Loading from "../utils/loading/Loading";
 import logo from "../assets/logo.png";
-import { IoHomeOutline } from "react-icons/io5";
+import { IoHomeOutline, IoLogOutOutline } from "react-icons/io5";
 import {
   FaUser,
   FaList,
@@ -20,9 +21,15 @@ import {
 } from "react-icons/fa";
 
 const DashboardLayout = () => {
-  const { role, isLoading } = useRole();
+  const { role, isLoading: roleLoading } = useRole();
+  const { userSignOut, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
 
-  if (isLoading) {
+  const handleLogout = () => {
+      userSignOut().then(() => navigate('/'));
+  }
+
+  if (roleLoading || authLoading) {
     return <Loading />;
   }
 
@@ -71,160 +78,200 @@ const DashboardLayout = () => {
           </Link>
 
           <ul className="menu w-full grow flex flex-col gap-2 p-2">
-            <li>
-              <NavLink
-                to="/dashboard/profile"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 p-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-300 text-base-content"
-                  } is-drawer-close:tooltip is-drawer-close:tooltip-right`
-                }
-                data-tip="Profile"
-              >
-                <FaUser className="text-lg" />
-                <span className="is-drawer-close:hidden">Profile</span>
-              </NavLink>
-            </li>
+            {role === 'admin' && (
+                <>
+                    <li>
+                      <NavLink
+                        to="/dashboard"
+                        end 
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Dashboard"
+                      >
+                        <FaChalkboard className="text-lg" />
+                        <span className="is-drawer-close:hidden">Dashboard</span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/users-list"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Users List"
+                      >
+                        <FaUsers className="text-lg" />
+                        <span className="is-drawer-close:hidden">Users List</span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/tuitions-list"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Tuitions List"
+                      >
+                        <FaList className="text-lg" />
+                        <span className="is-drawer-close:hidden">Tuitions List</span>
+                      </NavLink>
+                    </li>
+                </>
+            )}
 
-            <li>
-              <NavLink
-                to="/dashboard/tuitions-list"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 p-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-300 text-base-content"
-                  } is-drawer-close:tooltip is-drawer-close:tooltip-right`
-                }
-                data-tip="Tuitions List"
-              >
-                <FaList className="text-lg" />
-                <span className="is-drawer-close:hidden">Tuitions List</span>
-              </NavLink>
-            </li>
+            {role === 'tutor' && (
+                <>
+                    <li>
+                      <NavLink
+                        to="/dashboard/profile"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Profile"
+                      >
+                        <FaUser className="text-lg" />
+                        <span className="is-drawer-close:hidden">Profile</span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/my-applications"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="My Applications"
+                      >
+                        <FaFileAlt className="text-lg" />
+                        <span className="is-drawer-close:hidden">My Applications</span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/ongoing-tuitions"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Ongoing Tuitions"
+                      >
+                        <FaChalkboard className="text-lg" />
+                        <span className="is-drawer-close:hidden">
+                          Ongoing Tuitions
+                        </span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/payments"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Payments"
+                      >
+                        <FaMoneyBillWave className="text-lg" />
+                        <span className="is-drawer-close:hidden">Payments</span>
+                      </NavLink>
+                    </li>
+                </>
+            )}
 
-            <li>
-              <NavLink
-                to="/dashboard/users-list"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 p-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-300 text-base-content"
-                  } is-drawer-close:tooltip is-drawer-close:tooltip-right`
-                }
-                data-tip="Users List"
-              >
-                <FaUsers className="text-lg" />
-                <span className="is-drawer-close:hidden">Users List</span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/my-tuitions"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 p-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-300 text-base-content"
-                  } is-drawer-close:tooltip is-drawer-close:tooltip-right`
-                }
-                data-tip="My Tuitions"
-              >
-                <FaChalkboardTeacher className="text-lg" />
-                <span className="is-drawer-close:hidden">My Tuitions</span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/applied-tutors"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 p-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-300 text-base-content"
-                  } is-drawer-close:tooltip is-drawer-close:tooltip-right`
-                }
-                data-tip="Applied Tutors"
-              >
-                <FaUserGraduate className="text-lg" />
-                <span className="is-drawer-close:hidden">Applied Tutors</span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/add-tuition"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 p-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-300 text-base-content"
-                  } is-drawer-close:tooltip is-drawer-close:tooltip-right`
-                }
-                data-tip="Add Tuition"
-              >
-                <FaPlusCircle className="text-lg" />
-                <span className="is-drawer-close:hidden">Add Tuition</span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/payments"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 p-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-300 text-base-content"
-                  } is-drawer-close:tooltip is-drawer-close:tooltip-right`
-                }
-                data-tip="Payments"
-              >
-                <FaMoneyBillWave className="text-lg" />
-                <span className="is-drawer-close:hidden">Payments</span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/my-applications"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 p-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-300 text-base-content"
-                  } is-drawer-close:tooltip is-drawer-close:tooltip-right`
-                }
-                data-tip="My Applications"
-              >
-                <FaFileAlt className="text-lg" />
-                <span className="is-drawer-close:hidden">My Applications</span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/ongoing-tuitions"
-                className={({ isActive }) =>
-                  `flex items-center gap-2 p-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "hover:bg-base-300 text-base-content"
-                  } is-drawer-close:tooltip is-drawer-close:tooltip-right`
-                }
-                data-tip="Ongoing Tuitions"
-              >
-                <FaChalkboard className="text-lg" />
-                <span className="is-drawer-close:hidden">
-                  Ongoing Tuitions
-                </span>
-              </NavLink>
-            </li>
+            {/* STUDENT LINKS */}
+            {role === 'student' && (
+                <>
+                    <li>
+                      <NavLink
+                        to="/dashboard/profile"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Profile"
+                      >
+                        <FaUser className="text-lg" />
+                        <span className="is-drawer-close:hidden">Profile</span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/add-tuition"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Add Tuition"
+                      >
+                        <FaPlusCircle className="text-lg" />
+                        <span className="is-drawer-close:hidden">Add Tuition</span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/my-tuitions"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="My Tuitions"
+                      >
+                        <FaChalkboardTeacher className="text-lg" />
+                        <span className="is-drawer-close:hidden">My Tuitions</span>
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/applied-tutors"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Applied Tutors"
+                      >
+                        <FaUserGraduate className="text-lg" />
+                        <span className="is-drawer-close:hidden">Applied Tutors</span>
+                      </NavLink>
+                    </li>
+                </>
+            )}
 
             <li>
               <NavLink
@@ -254,6 +301,17 @@ const DashboardLayout = () => {
                 <IoHomeOutline className="text-lg" />
                 <span className="is-drawer-close:hidden">Go Home</span>
               </Link>
+            </li>
+            
+            <li>
+                <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 p-2 rounded-lg hover:bg-error hover:text-white text-base-content is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Logout"
+                >
+                    <IoLogOutOutline className="text-lg" />
+                    <span className="is-drawer-close:hidden">Logout</span>
+                </button>
             </li>
           </ul>
         </div>

@@ -30,7 +30,6 @@ const AddTuition = () => {
       return res.data;
     },
   });
-  console.log("student", student);
   if (isLoading) {
     return <Loading />;
   }

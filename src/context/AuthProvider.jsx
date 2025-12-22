@@ -33,7 +33,6 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unmount = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser)
-            // console.log(currentUser)
             setLoading(false)
             if(currentUser){
                 const loggedUser = {email : currentUser.email}
@@ -50,7 +49,6 @@ const AuthProvider = ({ children }) => {
                     localStorage.setItem('token', data.token)
                 })
                 .catch(err =>{
-                    console.log(err)
                 })
             }else{
                 localStorage.removeItem('token')

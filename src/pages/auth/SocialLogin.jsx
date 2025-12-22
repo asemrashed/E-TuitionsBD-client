@@ -8,12 +8,11 @@ const SocialLogin = ({setRegisterError}) => {
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
+    const from = location?.state || "/";
 
     const handleGoogleSignIn = async () => {
         try {
         const res = await userSignInWithGoogle();
-        console.log(res.user);
         const newUser = {
             displayName: res.user.displayName,
             email: res.user.email,
@@ -23,8 +22,7 @@ const SocialLogin = ({setRegisterError}) => {
             createdAt: new Date(),
         };
         await axiosSecure.post("/users", newUser).then( res => {
-            console.log(res.data);
-            navigate("/");
+            navigate(from, { replace: true });
         });
         } catch (error) {
         setRegisterError(error.message);

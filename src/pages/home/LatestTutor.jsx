@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import Loading from "../utils/loading/Loading";
-import useAxiosSecure from "../hooks/useAxiosSecure";
-import PrimaryBtn from "../utils/buttons/PrimaryBtn";
-import TutorCard from "./tutor/TutorCard";
+import Loading from "../../utils/loading/Loading";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import PrimaryBtn from "../../utils/buttons/PrimaryBtn";
+import TutorCard from "../../components/tutor/TutorCard";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -13,13 +13,12 @@ const containerVariants = {
   },
 };
 
-const TutorProfiles = () => {
+const LatestTutor = () => {
   const axiosSecure = useAxiosSecure();
   const { data: tutors = [], isLoading } = useQuery({
     queryKey: ["tutors"],
     queryFn: async () => {
       const res = await axiosSecure.get("/tutors?limit=4");
-      // console.log(res.data);
       return res.data;
     },
   });
@@ -51,4 +50,4 @@ const TutorProfiles = () => {
   );
 };
 
-export default TutorProfiles;
+export default LatestTutor;

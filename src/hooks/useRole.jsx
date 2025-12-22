@@ -1,15 +1,20 @@
-import useAuth from "./useAuth";
+import React from 'react';
+import useAuth from './useAuth';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from './useAxiosSecure';
 
 const useRole = () => {
-    const { user, loading } = useAuth();
-    // For now, we will just return a placeholder. 
-    // In a real app, you would fetch this from your backend.
-    
-    // Placeholder implementation:
-    const role = "admin"; // Defaulting to admin to show all links if any role-based logic exists
-    const isLoading = loading;
-
-    return { role, isLoading };
+    const {user} = useAuth()
+    const axiosSecure = useAxiosSecure()
+    const {isLoading, data: role = null}= useQuery({
+        queryKey:['user', user?.email],
+        enabled: !!user?.email,
+        queryFn: async()=>{
+            const res = await axiosSecure.get(`/users/${user.email}/role`)
+            return res.data
+        }
+    })
+    return {role, isLoading};
 };
 
 export default useRole;

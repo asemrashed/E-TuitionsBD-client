@@ -19,7 +19,7 @@ const Profile = () => {
     if(isLoading || !user){
         return <Loading/>
     }
-    const {displayName, email, photoURL, role,  phoneNumber, address, division, district, institution, degree, experience, graduationYear}= userData;
+    const {displayName, email, photoURL, study, role,  phoneNumber, address, division, district, institution, experience, graduationYear}= userData;
   return (
     <div className="w-full p-4 md:p-8 text-content-dark">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 p-6 bg-base-200 rounded-xl shadow">
@@ -29,8 +29,7 @@ const Profile = () => {
 
         <div className="flex space-x-4">
           <Link to="/dashboard/settings" className="bg-primary text-white font-semibold py-2 px-6 rounded-lg shadow hover:bg-opacity-90 transition flex items-center gap-2">
-            <span className="material-icons text-lg">edit</span>
-            <span>Edit</span>
+            <span className="material-icons text-lg">Settings</span>
           </Link>
 {/* 
           <button className="bg-red-600 text-white font-semibold py-2 px-6 rounded-lg shadow hover:bg-red-700 transition flex items-center gap-2">
@@ -96,25 +95,29 @@ const Profile = () => {
                 </div>
 
                 <div>
-                  <p className="text-sm text-gray-400">Degree</p>
+                  <p className="text-sm text-gray-400">study</p>
                   <p className="font-medium">
-                    {degree || "Not added yet"}
+                    {study || "Not added yet"}
                   </p>
                 </div>
 
-                <div>
+                {role === "tutor" && (
+                  <div>
                   <p className="text-sm text-gray-400">
                     Graduation Year
                   </p>
                   <p className="font-medium">{graduationYear || "Not added yet"}</p>
                 </div>
+                )}
 
-                <div>
+                {role === "tutor" && (
+                  <div>
                   <p className="text-sm text-gray-400">
                     Experience
                   </p>
                   <p className="font-medium">{experience || "Not added yet"}</p>
                 </div>
+                )}
               </div>
             </div>
 
