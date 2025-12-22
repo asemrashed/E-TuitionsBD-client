@@ -4,6 +4,7 @@ import HowItWorks from './HowWorks';
 import LatestTutor from './LatestTutor';
 import TuitionPosts from './TuitionPosts';
 import Footer from '../../components/Footer';
+import WhyChooseUs from './WhyUS';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <TuitionPosts />
             <LatestTutor />
             <HowItWorks />
+            <WhyChooseUs />
             <Footer />
         </>
     );
