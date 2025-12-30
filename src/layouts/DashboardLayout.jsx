@@ -28,13 +28,13 @@ const DashboardLayout = () => {
   const handleLogout = () => {
       userSignOut().then(() => navigate('/'));
   }
+  console.log('role', role);
 
-  if (roleLoading || authLoading) {
-    return <Loading />;
-  }
+  const isLoading = roleLoading || authLoading;
 
   return (
-    <div className="drawer lg:drawer-open">
+    isLoading ? <Loading /> : (
+        <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
 
       <div className="drawer-content">
@@ -55,7 +55,7 @@ const DashboardLayout = () => {
         </nav>
 
         <div className="p-4">
-          <Outlet />
+          {isLoading ? <Loading /> : <Outlet />}
         </div>
       </div>
 
@@ -200,6 +200,22 @@ const DashboardLayout = () => {
                         <span className="is-drawer-close:hidden">Payments</span>
                       </NavLink>
                     </li>
+                    <li>
+                      <NavLink
+                        to="/dashboard/settings"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Settings"
+                      >
+                        <FaCog className="text-lg" />
+                        <span className="is-drawer-close:hidden">Settings</span>
+                      </NavLink>
+                    </li>
                 </>
             )}
 
@@ -270,9 +286,26 @@ const DashboardLayout = () => {
                         <span className="is-drawer-close:hidden">Applied Tutors</span>
                       </NavLink>
                     </li>
+                    
+                    <li>
+                      <NavLink
+                        to="/dashboard/settings"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 p-2 rounded-lg transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "hover:bg-base-300 text-base-content"
+                          } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                        }
+                        data-tip="Settings"
+                      >
+                        <FaCog className="text-lg" />
+                        <span className="is-drawer-close:hidden">Settings</span>
+                      </NavLink>
+                    </li>
                 </>
             )}
-
+{/* 
             <li>
               <NavLink
                 to="/dashboard/settings"
@@ -288,7 +321,7 @@ const DashboardLayout = () => {
                 <FaCog className="text-lg" />
                 <span className="is-drawer-close:hidden">Settings</span>
               </NavLink>
-            </li>
+            </li> */}
 
             <div className="divider"></div>
 
@@ -317,6 +350,7 @@ const DashboardLayout = () => {
         </div>
       </div>
     </div>
+    )
   );
 };
 

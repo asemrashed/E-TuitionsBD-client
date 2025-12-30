@@ -1,5 +1,6 @@
 import { Outlet, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import authHero from '../assets/registration.png'
 
 const AuthLayout = () => {
     return (
@@ -36,7 +37,7 @@ const AuthLayout = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
             >
                 <img
-                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80"
+                    src={authHero}
                     alt="Student Learning"
                     className="object-cover w-full h-full"
                 />

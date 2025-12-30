@@ -49,7 +49,7 @@ const onSubmit = async (data) => {
       photoURL: photoURL, 
       role: role,
       phoneNumber: phoneNumber,
-      status: "pending",
+      status: role === "tutor" ? "pending" : "active",
       createdAt: new Date(), 
     };
 

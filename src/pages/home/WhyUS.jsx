@@ -9,7 +9,7 @@ const WhyChooseUs = () => {
         <p className="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-3">
           Why Choose Us
         </p>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+        <h2 className="text-4xl md:text-5xl font-bold text-base-content tracking-tight">
           Why Choose Us
         </h2>
       </div>
@@ -25,7 +25,7 @@ const WhyChooseUs = () => {
             </div>
             <span className="text-gray-400 text-lg font-medium">01</span>
           </div>
-          <h3 className="text-xl font-bold mb-3">
+          <h3 className="text-xl text-base-content font-bold mb-3">
             Quality Tutors
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
@@ -41,7 +41,7 @@ const WhyChooseUs = () => {
             </div>
             <span className="text-gray-400 text-lg font-medium">02</span>
           </div>
-          <h3 className="text-xl font-bold mb-3">
+          <h3 className="text-xl text-base-content font-bold mb-3">
             Tailored Learning
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
@@ -57,7 +57,7 @@ const WhyChooseUs = () => {
             </div>
             <span className="text-gray-400 text-lg font-medium">03</span>
           </div>
-          <h3 className="text-xl font-bold mb-3">
+          <h3 className="text-xl text-base-content font-bold mb-3">
             Secure Platform
           </h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
@@ -67,11 +67,11 @@ const WhyChooseUs = () => {
       </div>
 
       {/* CTA */}
-      <div className="mt-14 flex justify-center">
+      {/* <div className="mt-14 flex justify-center">
         <button className="h-14 px-8 rounded-xl bg-primary text-white text-lg font-bold shadow-lg hover:bg-[#1a6ce0] active:scale-[0.98] transition-all w-full md:w-auto min-w-[200px]">
           Find a Tutor Now
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };

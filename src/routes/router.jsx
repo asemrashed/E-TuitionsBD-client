@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivetRoute><DashboardLayout /></PrivetRoute>,
         children: [
-            { index: true, element: <DashboardHome /> }, 
+            { path: "", element: <AdminRoute><DashboardHome /></AdminRoute> }, 
             { path: "profile", element: <Profile /> },
             { path: "tuitions-list", element: <AdminRoute><TuitionsManagement /></AdminRoute> },
             { path: "users-list", element: <AdminRoute><UsersManagement /></AdminRoute> },

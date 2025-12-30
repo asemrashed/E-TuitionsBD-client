@@ -32,6 +32,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unmount = onAuthStateChanged(auth, (currentUser)=>{
+            console.log('dffa', currentUser)
             setUser(currentUser)
             setLoading(false)
             if(currentUser){

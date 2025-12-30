@@ -73,28 +73,6 @@ const UsersManagement = () => {
       confirmButtonText: "Yes",
     });
 
-    const makeAdmin = async (user) => {
-      const result = await Swal.fire({
-        title: "Are you sure to make this user admin?",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonText: "Yes",
-      });
-
-      if (result.isConfirmed) {
-        try {
-          const res = await axiosSecure.patch(`/users/${user._id}`, { role: "admin" });
-          if (res.data.modifiedCount > 0) {
-            await refetch();
-            Swal.fire("Made Admin!", "User has been made admin.", "success");
-          }
-        } catch (err) {
-          console.error(err);
-          Swal.fire("Error", "Failed to make user admin", "error");
-        }
-      }
-    }
-
     if (result.isConfirmed) {
       try {
         const res = await axiosSecure.patch(`/users/${user._id}`, { status });
@@ -121,6 +99,29 @@ const UsersManagement = () => {
       }
     }
   };
+  
+    const makeAdmin = async (user) => {
+      const result = await Swal.fire({
+        title: "Are you sure to make this user admin?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+      });
+
+      if (result.isConfirmed) {
+        try {
+          const res = await axiosSecure.patch(`/users/${user._id}`, { role: "admin" });
+          if (res.data.modifiedCount > 0) {
+            await refetch();
+            Swal.fire("Made Admin!", "User has been made admin.", "success");
+          }
+        } catch (err) {
+          console.error(err);
+          Swal.fire("Error", "Failed to make user admin", "error");
+        }
+      }
+    }
+
 
   return (
     <div className="p-6">

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import hero from '../assets/hero.png'
 
 const Hero = () => {
     return (
@@ -27,7 +28,7 @@ const Hero = () => {
                         <img
                             alt="Students and tutor collaborating"
                             className="w-full max-w-lg rounded-xl shadow-2xl shadow-primary/20"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvC2wSM4cIwG5h10ZTp33CPJyIu3l5fZAhql7O9pHI8TDFR1BX8ktZAQNl7sQeNGmjduK4xXwZKVYV3Pot9Iek46kvO5Of5bEtlRzkajhp7KbgLpasVI6c1u86bn2RbOzaxQJVjfq82olZ2EL-Hi8HLOCJ1_FweSfH_nz0qwn1RrydSb6rpgyIlDYnouIB_9TNaByopSyIzn0gJCE_W1KxjqD8xnOCS_QdsH6qjkC8kJTj-ZiGWVl4H6z4Tplv-xO2T6XKHVn3tw"
+                            src={hero}
                         />
                     </motion.div>
                 </div>

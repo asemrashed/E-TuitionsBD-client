@@ -3,9 +3,12 @@ import { FiSearch, FiMenu } from 'react-icons/fi';
 import ThemeToggle from './ThemeToggle';
 import logo from '../assets/logo.png';
 import useAuth from '../hooks/useAuth';
+import useRole from '../hooks/useRole';
 
 const Navbar = () => {
     const { user, userSignOut } = useAuth();
+    const {role}= useRole();
+    // console.log('role', role);
 
     const handleSignOut = async () => {
         try {
@@ -20,11 +23,11 @@ const Navbar = () => {
         { name: 'Tuitions Listing', path: '/tuitions' },
         { name: 'Tutor Listing', path: '/tutors' },
         { name: 'Contact', path: '/contact' },
-        { name: 'Dashboard', path: '/dashboard' },
+        { name: 'Dashboard', path: `${role === 'admin' ? '/dashboard' : '/dashboard/profile'}` },
     ];
 
     return (
-        <div className="flex flex-col w-full z-50">
+        <div className="flex flex-col w-full z-50 sticky top-0">
             <header className="sticky top-0 w-full bg-base-200/95 backdrop-blur shadow-lg shadow-black/5 z-50 transition-all duration-300">
                 <div className="container mx-auto px-6">
                     <div className="flex items-center justify-between py-3 gap-4">
@@ -70,7 +73,7 @@ const Navbar = () => {
                                         </div>
                                     </label>
                                     <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                                        <li><Link to="/dashboard/profile">Dashboard</Link></li>
+                                        <li><Link to={`${role === 'admin' ? '/dashboard' : '/dashboard/profile'}`}>Dashboard</Link></li>
                                         <li><button onClick={handleSignOut}>Logout</button></li>
                                     </ul>
                                 </div>
