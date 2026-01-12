@@ -29,7 +29,7 @@ const AllTuitions = () => {
     <div className="container mx-auto px-6 py-12">
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
         <div className="w-full md:w-1/4 relative">
-          <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <FiSearch className="absolute z-10 left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
             placeholder="Search tuitions..."
@@ -48,14 +48,13 @@ const AllTuitions = () => {
             <option>Class 6-8</option>
             <option>Class 9-10</option>
             <option>Class 11-12</option>
-            <option>English Medium</option>
           </select>
           <FiFilter className="absolute right-8 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none hidden md:block" />
         </div>
       </div>
 
       <motion.div
-        className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"

@@ -3,8 +3,9 @@ import Stats from '../../components/Stats';
 import HowItWorks from './HowWorks';
 import LatestTutor from './LatestTutor';
 import TuitionPosts from './TuitionPosts';
-import Footer from '../../components/Footer';
 import WhyChooseUs from './WhyUS';
+import Resources from './Resources';
+import Testimonials from './Testimonials';
 
 const Home = () => {
     return (
@@ -15,7 +16,8 @@ const Home = () => {
             <LatestTutor />
             <HowItWorks />
             <WhyChooseUs />
-            <Footer />
+            <Resources />
+            <Testimonials />
         </>
     );
 };

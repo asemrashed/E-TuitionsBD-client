@@ -26,9 +26,12 @@ import AdminRoute from './AdminRoute';
 import TutorRoute from './TutorRoute';
 import StudentRoute from './StudentRouter';
 import Contact from '../pages/contact/Contact';
+import AboutUs from '../pages/about/AboutUs';
+import HelpSupport from '../pages/help/HelpSupport';
 
 import DashboardHome from '../pages/dashboard/DashboardHome';
 import AdminLogin from '../pages/auth/AdminLogin';
+import UserProfile from '../pages/profile/UserProfile';
 
 const router = createBrowserRouter([
     {
@@ -43,7 +46,10 @@ const router = createBrowserRouter([
             { path: "tuitions", element: <AllTuitions /> },
             { path: "tuitions/:id", element: <TuitionDetails /> },
             { path: "tutors", element: <AllTutors /> },
-            { path: "contact", element: <Contact /> }
+            { path: "tutors/:id", element: <UserProfile /> },
+            { path: "contact", element: <Contact /> },
+            { path: "about-us", element: <AboutUs /> },
+            { path: "help-support", element: <HelpSupport /> }
         ],
     },
     {

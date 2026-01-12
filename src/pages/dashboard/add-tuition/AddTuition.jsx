@@ -150,8 +150,9 @@ const AddTuition = () => {
             <option>Class 9</option>
             <option>Class 10</option>
             <option>SSC Candidate</option>
+            <option>Inter 1st</option>
+            <option>Inter 2nd</option>
             <option>HSC Candidate</option>
-            <option>English Medium</option>
           </select>
         </div>
 

@@ -22,9 +22,13 @@ const Navbar = () => {
         { name: 'Home', path: '/' },
         { name: 'Tuitions Listing', path: '/tuitions' },
         { name: 'Tutor Listing', path: '/tutors' },
+        { name: 'About', path: '/about-us' },
+        { name: 'Support', path: '/help-support' },
         { name: 'Contact', path: '/contact' },
-        { name: 'Dashboard', path: `${role === 'admin' ? '/dashboard' : '/dashboard/profile'}` },
     ];
+    const privetNavLinks = [
+        { name: 'Dashboard', path: `${role === 'admin' ? '/dashboard' : '/dashboard/profile'}` },
+    ]
 
     return (
         <div className="flex flex-col w-full z-50 sticky top-0">
@@ -38,7 +42,7 @@ const Navbar = () => {
 
                         <div className="hidden md:block flex-1 w-full md:px-8 max-w-lg">
                             <div className="relative w-full">
-                                <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                <FiSearch className="absolute z-10 left-3 top-1/2 -translate-y-1/2 text-base-content/50" />
                                 <input
                                     type="text"
                                     placeholder="Search for tutors or subjects"
@@ -55,6 +59,11 @@ const Navbar = () => {
                                 </label>
                                 <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                                      {navLinks.map((link) => (
+                                        <li key={link.name}>
+                                            <Link to={link.path}>{link.name}</Link>
+                                        </li>
+                                     ))}
+                                     {privetNavLinks.map((link) => (
                                         <li key={link.name}>
                                             <Link to={link.path}>{link.name}</Link>
                                         </li>

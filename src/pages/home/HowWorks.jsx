@@ -2,7 +2,7 @@ const HowItWorks = () => {
   return (
     <section className="container mx-auto px-4 py-12 max-w-7xl">
       <div className="text-center mb-16">
-        <h1 className="font-display text-2xl md:text-3xl font-bold text-secondary dark:text-white mb-4">
+        <h1 className="font-display text-2xl md:text-3xl font-bold mb-4">
           How the Platform Works
         </h1>
         <p className="text-gray-500 max-w-2xl mx-auto">
