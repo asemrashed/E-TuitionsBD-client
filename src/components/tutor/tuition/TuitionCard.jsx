@@ -16,7 +16,7 @@ const cardVariants = {
 
   return (
     <motion.div
-        className="flex flex-col justify-between rounded-lg bg-base-200 p-6 shadow-lg hover:shadow-xl transition-shadow border border-base-300 dark:border-none"
+        className="flex flex-col justify-between rounded-lg bg-base-200 p-3 lg:p-4 shadow-lg hover:shadow-xl transition-shadow border border-base-300 dark:border-none"
         variants={cardVariants}
         whileHover={{ y: -5 }}
     >
@@ -26,11 +26,11 @@ const cardVariants = {
                 <span>{new Date(tuition.createdAt).toLocaleTimeString()}</span>
             </div>
         </div>
-        <div className="mb-4 grid grid-cols-2 gap-x-4 gap-y-3">
+        <div className="mb-4 grid grid-cols-2 gap-x-2 gap-y-2">
             <div className="col-span-2 flex items-start gap-3">
                 <MdLocationOn className="mt-1 text-lg text-primary" />
                 <div>
-                    <p className="font-semibold text-base-content dark:text-primary-content">{tuition.location}</p>
+                    <p className="font-semibold text-base-content">{tuition.location}</p>
                     <p className="text-sm text-base-content/70">{tuition.address},{tuition.district}</p>
                 </div>
             </div>
@@ -38,7 +38,7 @@ const cardVariants = {
             <div className="flex items-start gap-3">
                 <MdBook className="mt-1 text-lg text-primary" />
                 <div>
-                    <p className="font-semibold text-base-content dark:text-primary-content">Subjects</p>
+                    <p className="font-semibold text-base-content">Subjects</p>
                     <p className="text-sm text-base-content/70">{tuition.subject}</p>
                 </div>
             </div>
@@ -46,7 +46,7 @@ const cardVariants = {
             <div className="flex items-start gap-3">
                 <MdPaid className="mt-1 text-lg text-primary" />
                 <div>
-                    <p className="font-semibold text-base-content dark:text-primary-content">Tuition Fee</p>
+                    <p className="font-semibold text-base-content">Tuition Fee</p>
                     <p className="text-sm text-base-content/70">{tuition.salary}</p>
                 </div>
             </div>
@@ -54,7 +54,7 @@ const cardVariants = {
             <div className="flex items-start gap-3">
                 <MdPerson className="mt-1 text-lg text-primary" />
                 <div>
-                    <p className="font-semibold text-base-content dark:text-primary-content">Tutor Gender</p>
+                    <p className="font-semibold text-base-content">Tutor Gender</p>
                     <p className="text-sm text-base-content/70">{tuition.tutorGender}</p>
                 </div>
             </div>
@@ -62,7 +62,7 @@ const cardVariants = {
             <div className="flex items-start gap-3">
                 <MdSchedule className="mt-1 text-lg text-primary" />
                 <div>
-                    <p className="font-semibold text-base-content dark:text-primary-content">Tutoring Time</p>
+                    <p className="font-semibold text-base-content">Tutoring Time</p>
                     <p className="text-sm text-base-content/70">{tuition.tutoringTime}</p>
                 </div>
             </div>

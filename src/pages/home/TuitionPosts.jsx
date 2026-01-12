@@ -16,9 +16,9 @@ const containerVariants = {
 const TuitionPosts = () => {
     const axiosSecure= useAxiosSecure();
     const {data: tuitions=[], isLoading}= useQuery({
-        queryKey:["latest-tuitions", 3],
+        queryKey:["latest-tuitions", 4],
         queryFn: async()=>{
-            const res= await axiosSecure.get("/latest-tuitions?limit=3");
+            const res= await axiosSecure.get("/latest-tuitions?limit=4");
             return res.data;
         }
     })
@@ -33,7 +33,7 @@ const TuitionPosts = () => {
                     <PrimaryBtn value="See More" url="/tuitions"/>
                 </div>
                 <motion.div
-                    className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+                    className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4"
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"

@@ -6,11 +6,13 @@ import SocialLogin from "./SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const { userSignIn } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state|| "/";
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
@@ -22,6 +24,21 @@ const Login = () => {
         } catch (error) {
             setLoginError(error.message);
         }
+    };
+    
+    const handleStudentAutoFill = () => {
+    setValue("email", "mubarak@gmail.com");
+    setValue("password", "Asdfgh");
+    };
+
+    const handleTutorAutoFill = () => {
+    setValue("email", "rakib@gmail.com");
+    setValue("password", "Asdfgh");
+    };
+
+    const handleAdminAutoFill = () => {
+    setValue("email", "admin@admin.com");
+    setValue("password", "Asdfgh");
     };
 
     return (
@@ -68,6 +85,11 @@ const Login = () => {
                     <label className="label">
                         <Link to="#" className="label-text-alt link link-hover text-primary">Forgot password?</Link>
                     </label>
+                    <div className="flex items-center justify-between mt-2">
+                        <div onClick={handleStudentAutoFill} className="btn btn-xs md:btn-sm btn-outline btn-primary">Student autofill </div>
+                        <div onClick={handleTutorAutoFill} className="btn btn-xs md:btn-sm btn-outline btn-primary">Tutor autofill </div>
+                        <div onClick={handleAdminAutoFill} className="btn btn-xs md:btn-sm btn-primary">Admin autofill </div>
+                    </div>
                 </div>
 
                 {loginError && <p className="text-error text-center text-sm">{loginError}</p>}

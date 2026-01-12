@@ -57,4 +57,5 @@ h5,
 h6,
 .font-logo {
   font-family: var(--font-logo);
+  color: var(--color-primary);
 }

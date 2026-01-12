@@ -199,9 +199,9 @@ const TuitionDetails = () => {
           {number}
         </InfoCard>
       </div>
-      <div className="bg-base-100 dark:bg-[#1a222d] border border-base-300 dark:border-gray-800 rounded-xl p-4">
+      <div className="bg-base-100 border border-base-300 rounded-xl p-4">
         <h3 className="mb-2 flex items-center gap-2">
-          <MdSubject className="text-primary" /> Description
+          <MdSubject className="text-primary" /> <span className="text-base-content">Description</span>
         </h3>
         <p className="text-sm">{description}</p>
       </div>

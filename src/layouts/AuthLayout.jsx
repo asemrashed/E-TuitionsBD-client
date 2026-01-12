@@ -31,7 +31,7 @@ const AuthLayout = () => {
             </motion.div>
 
             <motion.div
-                className="hidden lg:block w-1/2 relative bg-primary/5"
+                className="hidden lg:flex items-center justify-center w-1/2 relative bg-primary/5 "
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -39,7 +39,7 @@ const AuthLayout = () => {
                 <img
                     src={authHero}
                     alt="Student Learning"
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent to-base-100/50" />
             </motion.div>

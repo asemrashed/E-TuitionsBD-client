@@ -5,7 +5,7 @@ const HowItWorks = () => {
         <h1 className="font-display text-2xl md:text-3xl font-bold text-secondary dark:text-white mb-4">
           How the Platform Works
         </h1>
-        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <p className="text-gray-500 max-w-2xl mx-auto">
           Connect with the perfect tutor or find eager students in just a few simple steps.
         </p>
       </div>
