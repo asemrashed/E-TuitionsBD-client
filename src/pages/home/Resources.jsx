@@ -20,14 +20,14 @@ const Resources = () => {
             id: 3,
             title: "Academic Blogs",
             description: "Stay updated with the latest trends, insights, and advice from educational experts.",
-            icon: <MdArticle size={32} className="text-accent" />,
+            icon: <MdArticle size={32} className="text-primary" />,
             link: "#"
         },
         {
             id: 4,
             title: "Learning Roadmaps",
             description: "Step-by-step pathways to mastering new subjects and skills efficiently.",
-            icon: <MdSchool size={32} className="text-success" />,
+            icon: <MdSchool size={32} className="text-secondary" />,
             link: "#"
         }
     ];
@@ -48,7 +48,7 @@ const Resources = () => {
                     {resources.map((resource) => (
                         <div key={resource.id} className="card bg-base-200 hover:bg-base-100 transition-colors duration-300 shadow-sm border border-base-300">
                             <div className="card-body items-center text-center p-6">
-                                <div className="w-16 h-16 rounded-full bg-base-100 flex items-center justify-center mb-4 shadow-sm">
+                                <div className={`w-16 h-16 rounded-full bg-primary-content/70 flex items-center justify-center mb-4 shadow-sm`}>
                                     {resource.icon}
                                 </div>
                                 <h3 className="card-title text-xl font-bold text-base-content mb-2">{resource.title}</h3>

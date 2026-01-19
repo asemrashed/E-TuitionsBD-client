@@ -30,7 +30,6 @@ import AboutUs from '../pages/about/AboutUs';
 import HelpSupport from '../pages/help/HelpSupport';
 
 import DashboardHome from '../pages/dashboard/DashboardHome';
-import AdminLogin from '../pages/auth/AdminLogin';
 import UserProfile from '../pages/profile/UserProfile';
 
 const router = createBrowserRouter([
@@ -46,7 +45,7 @@ const router = createBrowserRouter([
             { path: "tuitions", element: <AllTuitions /> },
             { path: "tuitions/:id", element: <TuitionDetails /> },
             { path: "tutors", element: <AllTutors /> },
-            { path: "tutors/:id", element: <UserProfile /> },
+            { path: "users/:id", element: <UserProfile /> },
             { path: "contact", element: <Contact /> },
             { path: "about-us", element: <AboutUs /> },
             { path: "help-support", element: <HelpSupport /> }
@@ -81,10 +80,6 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />,
-            },
-            {
-                path: "/admin",
-                element: <AdminLogin />,
             }
         ]
     }

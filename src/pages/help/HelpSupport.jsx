@@ -5,10 +5,12 @@ const HelpSupport = () => {
     return (
         <div className="min-h-screen bg-base-100 pb-20">
              {/* Header */}
-             <div className="bg-base-200 py-16">
-                <div className="max-w-4xl mx-auto px-6 text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold text-base-content mb-4">Help & Support</h1>
-                    <p className="text-lg text-gray-500">Find answers to common questions or get in touch with our team.</p>
+             <div className="bg-secondary/30 text-primary-content py-6 md:pt-12">
+                <div className="max-w-5xl mx-auto px-6 text-center">
+                    <h1 className="text-3xl md:5xl font-bold text-center text-primary mb-3 md:mb-6">Help & Support</h1>
+                    <p className="text-base md:text-lg max-w-2xl mx-auto opacity-90">
+                        Find answers to common questions or get in touch with our team.
+                    </p>
                 </div>
             </div>
 

@@ -28,7 +28,7 @@ const Login = () => {
     
     const handleStudentAutoFill = () => {
     setValue("email", "mubarak@gmail.com");
-    setValue("password", "Asdfgh");
+    setValue("password", "Asdfgh");J
     };
 
     const handleTutorAutoFill = () => {

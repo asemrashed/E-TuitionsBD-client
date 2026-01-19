@@ -63,7 +63,7 @@ const Navbar = () => {
                                             <Link to={link.path}>{link.name}</Link>
                                         </li>
                                      ))}
-                                     {privetNavLinks.map((link) => (
+                                     {user && privetNavLinks.map((link) => (
                                         <li key={link.name}>
                                             <Link to={link.path}>{link.name}</Link>
                                         </li>
@@ -109,6 +109,11 @@ const Navbar = () => {
                                     </NavLink>
                                 </li>
                             ))}
+                                     {user && privetNavLinks.map((link) => (
+                                        <li key={link.name}>
+                                            <Link to={link.path}>{link.name}</Link>
+                                        </li>
+                                     ))}
                         </ul>
                     </nav>
                 </div>

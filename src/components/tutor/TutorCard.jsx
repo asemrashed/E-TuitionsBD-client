@@ -29,7 +29,7 @@ const cardVariants = {
       <p className="my-2 text-sm text-base-content/70">
         {tutor.institution || "not added"}
       </p>
-      <PrimaryOutlineBtn value="See Profile" url={`/tutors/${tutor._id}`} />
+      <PrimaryOutlineBtn value="See Profile" url={`/users/${tutor._id}`} />
     </motion.div>
   );
 }

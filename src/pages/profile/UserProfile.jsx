@@ -10,14 +10,13 @@ const UserProfile = () => {
     const {id} = useParams();
     const axiosSecure = useAxiosSecure();
     const {data: userData={}, isLoading}= useQuery({
-        queryKey: ["user", user.email],
-        enabled: !!user,
+        queryKey: ["user", user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users/${id}`);
             return res.data;
         },
     })
-    if(isLoading || !user){
+    if(isLoading){
         return <Loading/>
     }
     const {displayName, email, photoURL, study, role,  phoneNumber, address, division, district, institution, experience, graduationYear}= userData;

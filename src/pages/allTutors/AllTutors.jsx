@@ -37,7 +37,7 @@ const containerVariants = {
           />
         </div>
 
-        <h2 className="text-2xl font-bold hidden md:block">Find Tutors</h2>
+        <h2 className="text-3xl md:5xl font-bold hidden md:block">Find Tutors</h2>
 
         <div className="w-full md:w-1/4 relative">
           <select className="select select-bordered w-full rounded-lg focus:ring-2 focus:ring-primary focus:outline-none">
