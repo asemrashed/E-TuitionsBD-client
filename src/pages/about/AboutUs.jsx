@@ -26,8 +26,7 @@ const AboutUs = () => {
                         </p>
                     </div>
                     <div className="bg-base-200 rounded-2xl h-80 flex items-center justify-center">
-                        {/* Placeholder for an image */}
-                        <span className="text-gray-400 font-medium text-lg">Mission Image / Illustration</span>
+                        <img src="./src/assets/mission.png" alt="Out mission" className="w-full h-full object-cover rounded-xl md:rounded-2xl shadow-lg shadow-base-content/30" />
                     </div>
                 </div>
             </div>
